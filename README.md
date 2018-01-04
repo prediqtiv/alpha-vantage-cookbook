@@ -6,7 +6,7 @@ JavaScript examples to help you with accessing market data from https://www.alph
 
 ## Scripts
 
-### <[Alpha Vantage Cookbook ~ Get Data Basic ]( alpha-vantage-get-data-basic.html )
+### [Alpha Vantage Cookbook ~ Get Data Basic ]( https://prediqtiv.github.io/alpha-vantage-cookbook/alpha-vantage-get-data-basic.html )
 
 
 
@@ -28,6 +28,6 @@ JavaScript examples to help you with accessing market data from https://www.alph
 
 ***
 
-<center title='predIQtiv' >
+
 # <a href=javascript:window.scrollTo(0,0); style=text-decoration:none; > ❦ </a>
-</center>
+
