@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang = "en" >
+<head>
+<meta charset = "utf-8" >
+<meta name = "viewport" content= "width=device-width, initial-scale=1">
+<meta name = "description" content = "Basic HTML template" >
+<meta name = "keywords" content = "JavaScript,GitHub,FOSS,3D,STEM" >
+<meta name = "date" content = "2018-01-04" >
+<title>Alpha Vantage Cookbook ~ Get Data Basic</title>
+<style>
+
+	body { font: 12pt monospace; margin: 0 auto; max-width: 800px; }
+
+	a { color: crimson; text-decoration: none; }
+	a:hover, a:focus { background-color: yellow; color: #aaa; text-decoration: underline }
+
+</style>
+</head>
+<body>
+
+	<h3><a href="" >Alpha Vantage Cookbook ~ Get Data Basic</a></h3>
+
+	<div id = "divContents" >Data will appear here. Open the developer console to see more details.</div>
+
+<script>
+
+/*
+
+Remember to upate the API key field with your key
+
+Get your key here: https://www.alphavantage.co/support/#api-key
+
+'Demo' API Key works only for exact copies of the demos in the documentation
+
+*/
+
+
+	const url = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=1min&apikey=demo';
+
+	requestFile( url );
+
+	function requestFile( url ) {
+
+		const xhr = new XMLHttpRequest();
+		xhr.open( 'GET', url, true );
+		xhr.onerror = function( xhr ) { console.log( 'error:', xhr  ); };
+		xhr.onprogress = function( xhr ) { console.log( 'bytes loaded:', xhr.loaded  ); }; /// or something
+		xhr.onload = callback;
+		xhr.send( null );
+
+		function callback( xhr ) {
+
+			let response, json, lines;
+
+			response = xhr.target.response;
+			divContents.innerText = response;
+
+			json = JSON.parse( response );
+
+console.log( 'json', json );
+
+		}
+
+	}
+
+
+</script>
+</body>
+</html>
