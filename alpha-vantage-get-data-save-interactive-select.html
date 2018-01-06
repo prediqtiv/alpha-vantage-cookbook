@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang = "en" >
+<head>
+<meta charset = "utf-8" >
+<meta name = "viewport" content= "width=device-width, initial-scale=1">
+<meta name = "description" content = "Basic HTML template" >
+<meta name = "keywords" content = "JavaScript,GitHub,FOSS,3D,STEM" >
+<meta name = "date" content = "2018-01-04" >
+<title>Alpha Vantage Cookbook ~ Get Data Save Interactive</title>
+<style>
+/* Copyright (c) 2018 predIQtiv. MIT License */
+
+	body { font: 12pt monospace; margin: 0 auto; max-width: 800px; }
+
+	a { color: crimson; text-decoration: none; }
+	a:hover, a:focus { background-color: yellow; color: #aaa; text-decoration: underline }
+
+</style>
+</head>
+<body>
+
+	<h3><a href="" >Alpha Vantage Cookbook ~ Get Data Save Interactive</a></h3>
+
+	<p>API key: <input id=inpApiKey value='demo' ></p>
+
+	<p>Symbol: &nbsp;<input id=inpSymbol value='MSFT' ></p>
+
+	<p>
+
+		function:
+		<select id=selFunction onchange=setInterval();  >
+			<option>TIME_SERIES_INTRADAY</option>
+			<option>TIME_SERIES_DAILY</option>
+			<option>TIME_SERIES_DAILY_ADJUSTED</option>
+			<option>TIME_SERIES_WEEKLY</option>
+			<option>TIME_SERIES_WEEKLY_ADJUSTED</option>
+			<option>TIME_SERIES_MONTHLY</option>
+			<option>TIME_SERIES_MONTHLY_ADJUSTED</option>
+			<option>BATCH_STOCK_QUOTES</option>
+		</select>
+
+		<span id=spnInterval >
+			interval:
+			<select id=selInterval >
+					<option>1min</option>
+					<option>5min</option>
+					<option>15min</option>
+					<option>30min</option>
+					<option>60min</option>
+			</select>
+		</span>
+	</p>
+	<p>
+
+		output size:
+		<select id=selSize >
+			<option>compact</option>
+			<option>full</option>
+		</select>
+
+		data type:
+		<select id=selType >
+			<option>json</option>
+			<option>csv</option>
+		</select>
+
+	</p>
+	<p>
+		<button onclick=getAlphaVantagedata(); >get Alpha Vantage Data</button>
+		 &nbsp; <button onclick=saveDataToFile(); >Save data to file</button>
+	</p>
+
+	<div id = "divContents" >Data will appear here after you push the button. This may take a number of seconds. Open the developer console to see more details.</div>
+
+<script>
+// Thanks to http://www.alphavantage.co/
+
+/*
+
+Remember to upate the API key field with your key
+
+Get your key here: https://www.alphavantage.co/support/#api-key
+
+'Demo' API Key works only for exact copies of the demos in the documentation
+
+*/
+
+
+	let symbol;
+
+	function getAlphaVantagedata() {
+
+		const func = selFunction.value; //'function is a reserved word
+		const size = selSize.value;
+		const type = selType.value;
+		const interval = selInterval.value;
+
+		const apiKey = inpApiKey.value;
+
+		symbol = inpSymbol.value;
+
+		const demo = symbol === 'MSFT' && apiKey === 'demo' ? true : false;
+
+		if ( demo === true ) {
+
+			url = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=1min&apikey=demo';
+
+		} else {
+
+			url = 'https://www.alphavantage.co/query?function=' + func +
+				'&symbol=' + symbol +
+				'&interval=' + interval +
+				'&outputsize=' + size +
+				'&datatype=' + type +
+				'&apikey=' + apiKey;
+
+		}
+
+		requestFile( url );
+
+	}
+
+
+	function requestFile( url ) {
+
+		const xhr = new XMLHttpRequest();
+		xhr.open( 'GET', url, true );
+		xhr.onerror = function( xhr ) { console.log( 'error:', xhr  ); };
+		xhr.onprogress = function( xhr ) { console.log( 'bytes loaded:', xhr.loaded  ); }; /// or something
+		xhr.onload = callback;
+		xhr.send( null );
+
+		function callback( xhr ) {
+
+			const response = xhr.target.response;
+			divContents.innerText = response;
+
+			if (response.slice( 0, 1) !== '{' ) { return; } // not a json file
+
+			const json = JSON.parse( response );
+
+console.log( 'json', json );
+
+		}
+
+	}
+
+
+	function setInterval() {
+
+		spnInterval.style.display = selFunction.value !== 'TIME_SERIES_INTRADAY' ? 'none' : '';
+
+	}
+
+
+	function saveDataToFile() {
+
+		const blob = new Blob( [ divContents.innerText ] );
+		let a = document.body.appendChild( document.createElement( 'a' ) );
+		a.href = window.URL.createObjectURL( blob );
+		a.download = symbol + '.txt';
+		a.click();
+		a = null;
+
+	}
+
+</script>
+</body>
+</html>

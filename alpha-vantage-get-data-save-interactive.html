@@ -6,7 +6,7 @@
 <meta name = "description" content = "Basic HTML template" >
 <meta name = "keywords" content = "JavaScript,GitHub,FOSS,3D,STEM" >
 <meta name = "date" content = "2018-01-04" >
-<title>Alpha Vantage Cookbook ~ Get Data Basic</title>
+<title>Alpha Vantage Cookbook ~ Get Data Save Interactive</title>
 <style>
 /* Copyright (c) 2018 predIQtiv. MIT License */
 
@@ -19,9 +19,18 @@
 </head>
 <body>
 
-	<h3><a href="" >Alpha Vantage Cookbook ~ Get Data Basic</a></h3>
+	<h3><a href="" >Alpha Vantage Cookbook ~ Get Data Save Interactive</a></h3>
 
-	<div id = "divContents" >Data will appear here. Open the developer console to see more details.</div>
+	<p>API key: <input id=inpApiKey value='demo' ></p>
+
+	<p>Symbol: &nbsp;<input id=inpSymbol value='MSFT' ></p>
+
+	<p>
+		<button onclick=getAlphaVantagedata(); >get Alpha Vantage Data</button>
+		 &nbsp; <button onclick=saveDataToFile(); >Save data to file</button>
+	</p>
+
+	<div id = "divContents" >Data will appear here after you push the button. This may take a number of seconds. Open the developer console to see more details.</div>
 
 <script>
 // Thanks to http://www.alphavantage.co/
@@ -37,9 +46,20 @@ Get your key here: https://www.alphavantage.co/support/#api-key
 */
 
 
-	const url = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=1min&apikey=demo';
+	let symbol;
 
-	requestFile( url );
+	function getAlphaVantagedata() {
+
+		const apiKey = inpApiKey.value;
+
+		symbol = inpSymbol.value;
+
+		const url = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=' + symbol + '&interval=1min&apikey=' + apiKey;
+
+		requestFile( url );
+
+	}
+
 
 	function requestFile( url ) {
 
@@ -65,6 +85,17 @@ console.log( 'json', json );
 
 	}
 
+
+	function saveDataToFile() {
+
+		const blob = new Blob( [ divContents.innerText ] );
+		let a = document.body.appendChild( document.createElement( 'a' ) );
+		a.href = window.URL.createObjectURL( blob );
+		a.download = symbol + '.txt';
+		a.click();
+		a = null;
+
+	}
 
 </script>
 </body>
