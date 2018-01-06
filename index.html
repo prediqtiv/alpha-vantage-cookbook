@@ -3,10 +3,10 @@
 <head>
 <meta charset = "utf-8" >
 <meta name = "viewport" content= "width=device-width, initial-scale=1">
-<meta name = "description" content = "Plain-vanilla JavaScript cookbook code examples for accessing Alpha Vantage market data." >
-<meta name = "keywords" content = "JavaScript,Markdown,GitHub,FOSS,3D,STEM" >
+<meta name = "description" content = "List and view all the files in all the folders. File wrangler. Default index.html file. Opens HTML or Markdown files. Passes location.hash." >
+<meta name = "keywords" content = "JavaScript,Markdown,Showdown,GitHub,API,FOSS,3D,STEM" >
 <meta name = "date" content = "2018-01-05" >
-<title>PredIQtiv ~ Alpha Vantage Cookbook</title>
+<title></title>
 
 <style>
 /* Copyright 2018 pushMe pullYou authors. MIT License */
@@ -36,7 +36,7 @@
 	#divContents { height: 100%; left: 0; margin: 0 auto; max-width: 800px; right: 0;}
 
 	#divMenu { background-color: var( --mnu-back-color ); box-sizing: border-box; margin: 0; height: 100%;
-		overflow-x: hidden; padding: 0px 10px 0 10px; position: fixed; top: 0; width: var( --mnu-width ); z-index: 1; transition: 0.5s; }
+		overflow-x: hidden; padding: 30px 10px 0 10px; position: fixed; top: 0; width: var( --mnu-width ); z-index: 1; transition: 0.5s; }
 
 	#hamburger { background-color: pink; box-sizing: border-box; cursor: pointer; font-size: 30px; left: calc( var( --mnu-width ) - 100px );
 		line-height: 30px; margin: 0; padding: 5px 15px 8px 10px; position: fixed; top: 0; transition: left .5s; z-index: 10; }
@@ -49,25 +49,26 @@
 
 	<div id = "divMenu" >
 
-
-		<p>
-			<a href="http://prediqiv.com/" target="_top" >predIQtiv</a> &raquo;
 <!--
+		<p>
+			<a href="http://www.ladybug.tools/" target="_top" >Ladybug Tools</a> &raquo;
 			<a href="http://www.ladybug.tools/spider/" target="_top" >&#x1f578;</a> &raquo;
 			<a href="../index.html" target="_"top style=font-size:24px; >&#x2302;</a> &raquo;
--->
 		</p>
+-->
 
 		<h2>
-			<a id = "urlInfo" target="_top" ><img src="https://status.github.com/images/invertocat.png" height=18 title='Octocat'  ></a>
-			<a href="" ><script> document.write( document.title )</script></a>
+			<a id = "aInfo" target="_top" ><img src="https://status.github.com/images/invertocat.png" height=18 title='Octocat'  ></a>
+			<a href="" id=aTitle ></a>
 		</h2>
 
-		<p><script> document.write(document.head.querySelector( '[name=description]' ).content ); </script></p>
+		<div id = "divDescription" ></div>
 
-		<div id = "divBreadcrumbs"></div>
+		<div id = "divBreadcrumbs" ></div>
 
 		<div id = "divMenuItems" ></div>
+
+		<hr>
 
 		<p><img src="https://status.github.com/images/invertocat.png" height=18 title='Octocat' > Click icon to view source code on GitHub.
 
@@ -109,32 +110,43 @@
 
 	const user = 'prediqtiv';
 	const repo = '/alpha-vantage-cookbook';
-	const pathRepo = ''; // 'tootoo10/'; // needs trailing slash
+	const pathRepo = ''; // needs trailing slash
+	const title = 'PreIQtiv / Alpha Vantage Cookbook';
+	let defaultFile;
+	const description = 'Plain-vanilla JavaScript cookbook code examples for accessing <a href="https://www.alphavantage.co/" >Alpha Vantage</a> market data.';
+	const ignoreFolders = [ 'archive', 'pages' ];
+	const ignoreFiles = [ '.gitattributes', '.gitignore', 'index.html' ];
 
+// 	const user = 'pushme-pullyou';
+// 	const repo = '/pushme-pullyou.github.io';
+// //starting in a remote folder need fixing
+// 	const pathRepo = ''; //  'tootoo10/'; // needs trailing slash
+// 	const title = user;
+// 	let defaultFile;
+// 	const description = 'Browse and view files on GitHub with remarkable ease.';
 
-/*
-	const user = 'pushme-pullyou';
-	const repo = '/pushme-pullyou.github.io';
-	const pathRepo = ''; // 'tootoo10/'; // needs trailing slash
+	// const user = 'ladybug-tools'
+	// const repo = '/spider';
+	// const pathRepo = '';
+	// const title = user + ' ' + repo;
+	// var defaultFile = 'plugins/view-github-issues.html';
+	// let description;
 
-	const user = 'ladybug-tools'
-	const repo = '/spider';
-	const pathRepo = '';
+	// const user = 'theo-armour'
+	// const repo = '/ucsf2';
+	// const pathRepo = '';
+	// const title = user + ' ' + repo;
+	// let defaultFile;
+	// const description = 'The ruminations, musings and code snippets of a patient that relate to https://ucsf.edu';
 
-	const user = 'theo-armour'
-	const repo = '/ucsf2';
-	const pathRepo = '';
+	// const user = 'webmath'
+	// const repo = '/webmath.github.io';
+	// const pathRepo = '';
+	// const title = user;
+	// const defaultFile = 'readme.md';
+	// let description;
 
-
-	const user = 'webmath'
-	const repo = '/webmath.github.io';
-	const pathRepo = '';
-*/
-
-
-	const uriDefaultFile = 'README.md';
-//	const uriDefaultFile = 'plugins/view-github-issues.html'
-
+	const uriDefaultFile = defaultFile ? defaultFile : 'README.md';
 	const iconInfo = '<img src="https://status.github.com/images/invertocat.png" height=18 > </a>';
 
 	const urlGitHubApiContents = 'https://api.github.com/repos/' + user + repo + '/contents/';
@@ -149,11 +161,15 @@
 
 	function init() {
 
-		urlInfo.href = urlGitHubSource;
+		aInfo.href = urlGitHubSource;
+//		aTitle.innerHTML = document.title = location.href.split( '/' ).pop().slice( 0, -5 ).replace( /-/g, ' ' );
+		aTitle.innerHTML = document.title = title;
+
+		divDescription.innerHTML = description ? description : document.head.querySelector( '[name=description]' ).content + '<hr>';
 
 		window.addEventListener ( 'hashchange', onHashChange, false );
 
-		requestFile( urlGitHubApiContents, callbackGitHubMenu );
+		getFolderContents( pathRepo );
 
 		onHashChange();
 
@@ -175,15 +191,13 @@
 			url = location.hash.slice( 1 );
 			ulc = url.toLowerCase();
 
-			crumbs = url.lastIndexOf( '/' ) > 0 ? url.slice( 0, url.lastIndexOf( '/' ) ) : '';
-
-console.log( url.lastIndexOf( '/' ), crumbs );
-
+// better to add breadcrumbs below
+//			crumbs = url.lastIndexOf( '/' ) > 0 ? url.slice( 0, url.lastIndexOf( '/' ) ) : '';
+//console.log( url.lastIndexOf( '/' ), crumbs );
 //			setBreadcrumbs( crumbs );
-
 //console.log( 'crumbs',  crumbs );
 
-			requestFile( urlGitHubApiContents + url.slice( 0, url.lastIndexOf( '/' ) + 1 ), callbackGitHubMenu );
+//			requestFile( urlGitHubApiContents + url.slice( 0, url.lastIndexOf( '/' ) + 1 ), callbackGitHubMenu );
 //			requestFile( url.slice( 0, url.lastIndexOf( '/' ) + 1 ), callbackGitHubMenu );
 
 		}
@@ -193,6 +207,7 @@ console.log( url.lastIndexOf( '/' ), crumbs );
 			requestFile( url, callbackMarkdown );
 
 		} else if ( ulc.endsWith( '.html' ) ) {
+
 // needs revisiting so 'view-github-issues' scrolls more nicely
 
 			document.body.style.overflow = 'hidden';
@@ -203,6 +218,7 @@ console.log( url.lastIndexOf( '/' ), crumbs );
 			divContents.innerHTML = '<img src=' + urlGitHubPage + url + ' style=margin:20px; >';
 
 // update menu
+
 		} else if ( url.endsWith( '/'  ) ) {
 
 			bits = url.split( '#' );
@@ -265,14 +281,15 @@ console.log( url.lastIndexOf( '/' ), crumbs );
 	function callbackGitHubMenu( xhr ) {
 
 		const response = xhr.target.response;
+
 		const items = JSON.parse( response );
 		const len = pathRepo.length;
 
 		let txt = '';
 
-//	if ( items.message ) { alert( items.message ); return; }
+		if ( items.message ) { alert( items.message ); return; }
 
-		const ignoreFolders = [ 'data', 'archive', 'pages', 'index.html' ]; //, 'plugins'
+//		const ignoreFolders = [ 'data' ]; //, 'plugins'
 
 		for ( let item of items ) {
 
@@ -292,7 +309,7 @@ console.log( url.lastIndexOf( '/' ), crumbs );
 
 		}
 
-		const ignoreFiles = [ '.gitattributes', '.gitignore' ];
+//		const ignoreFiles = [ '.gitattributes', '.gitignore' ];
 
 		for ( let item of items ) {
 
@@ -309,13 +326,13 @@ console.log( url.lastIndexOf( '/' ), crumbs );
 						'<td>' +
 
 // choose to access remote or local files
-//							'<a href=#' + urlGitHubPage + pathRepo + itemPath +
-							'<a href=#' + itemPath +
+							'<a href=#' + urlGitHubPage + pathRepo + itemPath +
+//							'<a href=#' + itemPath +
 
 							' title="' + item.size.toLocaleString() + ' bytes" > ' + item.name + '</a> ' +
 // choose to access remote or local files
-//							( item.path.endsWith( 'html' ) ? '<a href=' + urlGitHubPage + pathRepo + itemPath + ' >&#x2750;</a>' : '' ) +
-							( item.path.endsWith( 'html' ) ? '<a href=' + itemPath + ' >&#x2750;</a>' : '' ) +
+							( item.path.endsWith( 'html' ) ? '<a href=' + urlGitHubPage + pathRepo + itemPath + ' >&#x2750;</a>' : '' ) +
+//							( item.path.endsWith( 'html' ) ? '<a href=' + itemPath + ' >&#x2750;</a>' : '' ) +
 
 						'</td>' +
 
@@ -324,8 +341,8 @@ console.log( url.lastIndexOf( '/' ), crumbs );
 				if ( ( !location.hash || location.hash.toLowerCase().endsWith( 'readme.md' ) )
 						&& item.path !== 'README.md' && item.name.toLowerCase() === 'readme.md' ) {
 
-//					location.hash = urlGitHubPage + pathRepo + itemPath;
-					location.hash = itemPath;
+					location.hash = urlGitHubPage + pathRepo + itemPath;
+//					location.hash = itemPath;
 
 				}
 
