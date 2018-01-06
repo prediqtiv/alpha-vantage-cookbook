@@ -1,10 +1,13 @@
 <span style=display:none; >[You are now in a GitHub source code view - click this link to view Read Me file as a web page]( https://prediqtiv.github.io/alpha-vantage-cookbook/#README.md "View file as a web page." ) </span>
 
 
+![]( https://prediqtiv.github.io/images/predIQtiv-logo2.png =200x50 )
 
-# [PreIQtiv ~ Alpha Vantage Cookbook]( #README.md )
+#  [PreIQtiv ~ Alpha Vantage Cookbook]( #README.md )
 
 JavaScript examples to help you with accessing market data from [Alpha Vantage]( https://www.alphavantage.co/ )
+
+Everything here is plain-vanilla JavaScript - designed to be easy to transfer into your preferred library or language.
 
 ## Scripts
 
