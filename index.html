@@ -3,10 +3,10 @@
 <head>
 <meta charset = "utf-8" >
 <meta name = "viewport" content= "width=device-width, initial-scale=1">
-<meta name = "description" content = "List and view all the files in all the folders. File wrangler. Default index.html file. Opens HTML or Markdown files. Passes location.hash." >
+<meta name = "description" content = "Plain-vanilla JavaScript cookbook code examples for accessing Alpha Vantage market data." >
 <meta name = "keywords" content = "JavaScript,Markdown,GitHub,FOSS,3D,STEM" >
 <meta name = "date" content = "2018-01-05" >
-<title>Index / Table of Contents</title>
+<title>PredIQtiv ~ Alpha Vantage Cookbook</title>
 
 <style>
 /* Copyright 2018 pushMe pullYou authors. MIT License */
@@ -36,7 +36,7 @@
 	#divContents { height: 100%; left: 0; margin: 0 auto; max-width: 800px; right: 0;}
 
 	#divMenu { background-color: var( --mnu-back-color ); box-sizing: border-box; margin: 0; height: 100%;
-		overflow-x: hidden; padding: 30px 10px 0 10px; position: fixed; top: 0; width: var( --mnu-width ); z-index: 1; transition: 0.5s; }
+		overflow-x: hidden; padding: 0px 10px 0 10px; position: fixed; top: 0; width: var( --mnu-width ); z-index: 1; transition: 0.5s; }
 
 	#hamburger { background-color: pink; box-sizing: border-box; cursor: pointer; font-size: 30px; left: calc( var( --mnu-width ) - 100px );
 		line-height: 30px; margin: 0; padding: 5px 15px 8px 10px; position: fixed; top: 0; transition: left .5s; z-index: 10; }
@@ -49,13 +49,14 @@
 
 	<div id = "divMenu" >
 
-<!--
+
 		<p>
-			<a href="http://www.ladybug.tools/" target="_top" >Ladybug Tools</a> &raquo;
+			<a href="http://prediqiv.com/" target="_top" >predIQtiv</a> &raquo;
+<!--
 			<a href="http://www.ladybug.tools/spider/" target="_top" >&#x1f578;</a> &raquo;
 			<a href="../index.html" target="_"top style=font-size:24px; >&#x2302;</a> &raquo;
-		</p>
 -->
+		</p>
 
 		<h2>
 			<a id = "urlInfo" target="_top" ><img src="https://status.github.com/images/invertocat.png" height=18 title='Octocat'  ></a>
@@ -178,7 +179,7 @@
 
 console.log( url.lastIndexOf( '/' ), crumbs );
 
-			setBreadcrumbs( crumbs );
+//			setBreadcrumbs( crumbs );
 
 //console.log( 'crumbs',  crumbs );
 
@@ -271,7 +272,7 @@ console.log( url.lastIndexOf( '/' ), crumbs );
 
 //	if ( items.message ) { alert( items.message ); return; }
 
-		const ignoreFolders = [ 'data' ]; //, 'plugins'
+		const ignoreFolders = [ 'data', 'archive', 'pages', 'index.html' ]; //, 'plugins'
 
 		for ( let item of items ) {
 
@@ -308,13 +309,13 @@ console.log( url.lastIndexOf( '/' ), crumbs );
 						'<td>' +
 
 // choose to access remote or local files
-							'<a href=#' + urlGitHubPage + pathRepo + itemPath +
-//							'<a href=#' + itemPath +
+//							'<a href=#' + urlGitHubPage + pathRepo + itemPath +
+							'<a href=#' + itemPath +
 
 							' title="' + item.size.toLocaleString() + ' bytes" > ' + item.name + '</a> ' +
 // choose to access remote or local files
-							( item.path.endsWith( 'html' ) ? '<a href=' + urlGitHubPage + pathRepo + itemPath + ' >&#x2750;</a>' : '' ) +
-//							( item.path.endsWith( 'html' ) ? '<a href=' + itemPath + ' >&#x2750;</a>' : '' ) +
+//							( item.path.endsWith( 'html' ) ? '<a href=' + urlGitHubPage + pathRepo + itemPath + ' >&#x2750;</a>' : '' ) +
+							( item.path.endsWith( 'html' ) ? '<a href=' + itemPath + ' >&#x2750;</a>' : '' ) +
 
 						'</td>' +
 
@@ -323,8 +324,8 @@ console.log( url.lastIndexOf( '/' ), crumbs );
 				if ( ( !location.hash || location.hash.toLowerCase().endsWith( 'readme.md' ) )
 						&& item.path !== 'README.md' && item.name.toLowerCase() === 'readme.md' ) {
 
-					location.hash = urlGitHubPage + pathRepo + itemPath;
-//					location.hash = itemPath;
+//					location.hash = urlGitHubPage + pathRepo + itemPath;
+					location.hash = itemPath;
 
 				}
 
