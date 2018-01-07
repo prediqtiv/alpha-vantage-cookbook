@@ -20,8 +20,8 @@
 		<h3><a href = "" >Symbol to Name to Alpha Vantage Data <a></a></h3>
 
 		<p>
-			enter text: <input id=inpText oninput=updateListofNames(); > &nbsp;
-			enter api key: <input id=inpApiKey title='For AV data, enter key before search' >
+			enter text: <input id=inpText oninput=updateListOfNames(); > &nbsp;
+			enter api key: <input id=inpApiKey oninput=setStorage(); title='For AV data, enter key before search' >
 		</p>
 
 		<div id = "divContents" >
@@ -31,13 +31,30 @@
 	const url = 'https://api.iextrading.com/1.0/ref-data/symbols';
 	let symbols;
 
+
 	init();
 
 	function init() {
 
+		const apiKey = localStorage.getItem( 'apiKey' );
+
+		inpApiKey.value = apiKey ? apiKey : '' ;
+
 		requestFile( url );
 
 	}
+
+
+
+	function setStorage() {
+
+		const apiKey = inpApiKey.value;
+
+		localStorage.setItem( 'apiKey', apiKey );
+
+	}
+
+
 
 	function requestFile( url ) {
 
@@ -63,7 +80,7 @@ console.log( 'symbols', symbols );
 	}
 
 
-	function updateListofNames() {
+	function updateListOfNames() {
 
 		const str = inpText.value.toUpperCase();
 
@@ -80,7 +97,9 @@ console.log( 'symbols', symbols );
 				txt +=
 				'<a href="https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=' + symbol.symbol + '&apikey=' + apiKey + '" target=_blank >' +
 				 ( symbol.symbol + spaces ).slice( 0, 6 ) +
-				 '</a>: ' + symbol.name + '<br>';
+				 '</a>: ' +
+				 symbol.type + ' : ' +
+				symbol.name + '<br>';
 
 			}
 

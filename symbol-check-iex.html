@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang = "en" >
+<head>
+<meta charset = "utf-8" >
+<meta name = "viewport" content= "width=device-width, initial-scale=1">
+<meta name = "description" content = "Check Alpha Vantage data against IEX Trading symbol list" >
+<meta name = "keywords" content = "Alpha Vantage,IEX,JavaScript,GitHub,FOSS,3D,STEM" >
+<meta name = "date" content = "2018-01-06" >
+<title>Symbol Check IEX</title>
+<style>
+
+	body { font: 12pt monospace; margin: 0 auto; max-width: 800px; }
+	a { color: crimson; text-decoration: none; }
+	a:hover, a:focus { background-color: yellow; color: #aaa; text-decoration: underline }
+
+</style>
+</head>
+<body>
+
+		<h3>
+			<a href="https://github.com/prediqtiv/alpha-vantage-cookbook/symbol-check-iex.html" target="_top" ><img src="https://status.github.com/images/invertocat.png" height=18 ></a>
+			<a href = "" >Symbol Check</a>:
+			<a href=https://www.alphavantage.co >Alpha Vantage</a> data against <a href=https://iextrading.com >IEX</a> symbol list <a></a></h3>
+
+		<p>
+			enter api key: <input id=inpApiKey oninput=setStorage(); title='Uses localStorage to save key between sessions' > &nbsp;
+			<button onclick=checkIEX(); >check all symbols from IEX</button>
+		</p>
+
+		<div id = "divContents" >
+
+<script>
+
+	const url = 'https://api.iextrading.com/1.0/ref-data/symbols';
+	let symbols;
+	let count;
+
+
+	init();
+
+	function init() {
+
+		const apiKey = localStorage.getItem( 'apiKey' );
+
+		inpApiKey.value = apiKey ? apiKey : '' ;
+
+		requestFile( url, callbackListIex );
+
+	}
+
+
+
+	function setStorage() {
+
+		const apiKey = inpApiKey.value;
+
+		localStorage.setItem( 'apiKey', apiKey );
+
+	}
+
+
+
+	function requestFile( url, callback ) {
+
+		const xhr = new XMLHttpRequest();
+		xhr.crossOrigin = 'anonymous';
+		xhr.open( 'GET', url, true );
+		xhr.onerror = function( xhr ) { console.log( 'error:', xhr  ); };
+//		xhr.onprogress = function( xhr ) { console.log( 'bytes loaded:', xhr.loaded  ); }; /// or something
+		xhr.onload = callback;
+		xhr.send( null );
+
+	}
+
+
+
+	function callbackListIex( xhr ) {
+
+			response = xhr.target.response;
+//console.log( 'response', response );
+
+			symbols = JSON.parse( response );
+
+console.log( 'symbols', symbols );
+
+	}
+
+
+
+	function checkIEX() {
+
+		count = 0;
+
+		checkSymbols();
+
+	}
+
+
+
+	function checkSymbols() {
+
+		let items = [];
+
+		const len = count + 100 < symbols.length ? count + 100 : symbols.length - count;
+
+		for ( let i = count; i < len; i++ ) {
+
+			symbol = symbols[ i ];
+
+			items.push( symbol.symbol );
+
+		}
+
+// console.log( 'items', items.join() );
+
+		const apiKey = localStorage.getItem( 'apiKey' );
+
+		const url = 'https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=' + items.join() + '&apikey=' + apiKey;
+
+		requestFile( url, callbackListItems );
+
+	}
+
+
+
+	function callbackListItems( xhr ) {
+
+		const response = xhr.target.response;
+//console.log( 'response', response );
+
+		const itemsChecked = JSON.parse( response );
+
+		const len = count + 100 < symbols.length ? count + 100 : symbols.length - count;
+
+		let txt = '';
+
+		for ( var i = 0; i < itemsChecked.length; i++ ) {
+
+			const item = itemsChecked[ i ];
+
+			if ( !item.symbol || !item.price || !item.timestamp ){
+
+				txt += ( count + i ) + '. ' + symbols[ count + i ] + ' - ' + item + '<br>';
+
+			}
+		}
+
+		const newCount = count + 100;
+		const len2 = newCount < symbols.length - 1 ? newCount : symbols.length - 1;
+
+		txt = txt ? '<br>' + txt : ': no data missing <br>';
+
+		divContents.innerHTML = len2 + ' checked: ' +
+			symbols[ count ].symbol + ' to ' + symbols[ len2 ].symbol +
+			txt +
+			divContents.innerHTML +
+		'';
+
+// console.log( 'itemsChecked', count );
+
+		if ( newCount < symbols.length ) {
+
+			count = newCount;
+			setTimeout( checkSymbols, 500 );
+
+		}
+
+	}
+
+
+</script>
+</body>
+</html>
