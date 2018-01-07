@@ -6,7 +6,7 @@
 <meta name = "description" content = "Basic HTML template" >
 <meta name = "keywords" content = "JavaScript,GitHub,FOSS,3D,STEM" >
 <meta name = "date" content = "2017-12-15" >
-<title></title>
+<title>Symbol to Name</title>
 <style>
 
 	body { font: 12pt monospace; margin: 0 auto; max-width: 800px; }
@@ -22,9 +22,7 @@
 </head>
 <body>
 
-	<div id = "divHeader" >
-
-		<div id = "divTitle" ></div>
+		<h3><a href = "" >Symbol to Name to Alpha Vantage Data <a></a></h3>
 
 		<p>
 			enter text: <input id=inpText oninput=updateListofNames(); > &nbsp;
@@ -36,8 +34,6 @@
 
 		</div>
 
-	</div>
-
 
 <script>
 
@@ -47,14 +43,6 @@
 	init();
 
 	function init() {
-
-
-
-		divTitle.innerHTML =
-			'<h2>' +
-				'<a  href = "" >' + location.href.split( '/' ).pop().slice( 0, -5 ).replace( /-/g, ' ' ) + '</a>' +
-			'</h2>';
-
 
 		requestFile( url );
 
@@ -71,7 +59,6 @@
 		xhr.send( null );
 
 		function callback( xhr ) {
-
 
 			response = xhr.target.response;
 //console.log( 'response', response );
