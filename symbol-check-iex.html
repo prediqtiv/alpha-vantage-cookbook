@@ -20,14 +20,21 @@
 		<h3>
 			<a href="https://github.com/prediqtiv/alpha-vantage-cookbook/symbol-check-iex.html" target="_top" ><img src="https://status.github.com/images/invertocat.png" height=18 ></a>
 			<a href = "" >Symbol Check</a>:
-			<a href=https://www.alphavantage.co >Alpha Vantage</a> data against <a href=https://iextrading.com >IEX</a> symbol list <a></a></h3>
+			<a href=https://www.alphavantage.co >Alpha Vantage</a> data against <a href=https://iextrading.com >IEX</a> symbol list</h3>
 
 		<p>
-			enter api key: <input id=inpApiKey oninput=setStorage(); title='Uses localStorage to save key between sessions' > &nbsp;
+			Enter api key: <input id=inpApiKey oninput=setStorage(); title='Uses localStorage to save key between sessions' > &nbsp;
 			<button onclick=checkIEX(); >check all symbols from IEX</button>
 		</p>
 
 		<div id = "divContents" >
+
+			<p>Click button to start check. Data will appear here. Open developer console for more data</p>
+
+			<p>Many thanks to <a href=https://www.alphavantage.co >Alpha Vantage</a> and <a href=https://iextrading.com >IEX</a>.</p>
+
+			<p><a href="https://github.com/prediqtiv/alpha-vantage-cookbook/symbol-check-iex.html">Source code on GitHub</a></p>
+		</div>
 
 <script>
 
@@ -91,6 +98,8 @@ console.log( 'symbols', symbols );
 
 		count = 0;
 
+		divContents.innerHTML = '';
+
 		checkSymbols();
 
 	}
@@ -132,14 +141,14 @@ console.log( 'symbols', symbols );
 //console.log( 'response', response );
 
 		let itemsChecked = JSON.parse( response );
-
 console.log( 'itemsChecked', itemsChecked );
-		itemsChecked = itemsChecked['Stock Quotes'];
 
+		itemsChecked = itemsChecked['Stock Quotes'];
+console.log( 'items length', itemsChecked.length );
 
 		const len = count + 100 < symbols.length ? count + 100 : symbols.length - count;
 
-		let txt = '';
+		let txt = itemsChecked.length !== 100 ? 'Number of AV items returned: ' + itemsChecked.length + '<br>' : '';
 
 		for ( var i = 0; i < itemsChecked.length; i++ ) {
 
@@ -169,7 +178,7 @@ console.log( 'itemsChecked', itemsChecked );
 		if ( newCount < symbols.length ) {
 
 			count = newCount;
-			setTimeout( checkSymbols, 500 );
+			setTimeout( checkSymbols, 800 );
 
 		}
 
