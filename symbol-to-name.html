@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang = "en" >
+<head>
+<meta charset = "utf-8" >
+<meta name = "viewport" content= "width=device-width, initial-scale=1">
+<meta name = "description" content = "Basic HTML template" >
+<meta name = "keywords" content = "JavaScript,GitHub,FOSS,3D,STEM" >
+<meta name = "date" content = "2017-12-15" >
+<title></title>
+<style>
+
+	body { font: 12pt monospace; margin: 0 auto; max-width: 800px; }
+	a { color: crimson; text-decoration: none; }
+	a:hover, a:focus { background-color: yellow; color: #aaa; text-decoration: underline }
+
+	button, input[type=button] { background-color: #ddd; border: none; color: #322; cursor: pointer; padding: 3px 5px; }
+	button:hover { background: #ccc; color: #fff }
+
+/*	#divMenu { left: 0; margin: 20px; max-width: 300px; position: absolute; top: 0; } */
+
+</style>
+</head>
+<body>
+
+	<div id = "divHeader" >
+
+		<div id = "divTitle" ></div>
+
+		<p>
+			enter text: <input id=inpText oninput=updateListofNames(); > &nbsp;
+			enter api key: <input id=inpApiKey >
+		</p>
+
+		<div id = "divContents" >
+
+
+		</div>
+
+	</div>
+
+
+<script>
+
+	const url = 'https://api.iextrading.com/1.0/ref-data/symbols';
+	let symbols;
+
+	init();
+
+	function init() {
+
+
+
+		divTitle.innerHTML =
+			'<h2>' +
+				'<a  href = "" >' + location.href.split( '/' ).pop().slice( 0, -5 ).replace( /-/g, ' ' ) + '</a>' +
+			'</h2>';
+
+
+		requestFile( url );
+
+	}
+
+	function requestFile( url ) {
+
+		const xhr = new XMLHttpRequest();
+		xhr.crossOrigin = 'anonymous';
+		xhr.open( 'GET', url, true );
+		xhr.onerror = function( xhr ) { console.log( 'error:', xhr  ); };
+//		xhr.onprogress = function( xhr ) { console.log( 'bytes loaded:', xhr.loaded  ); }; /// or something
+		xhr.onload = callback;
+		xhr.send( null );
+
+		function callback( xhr ) {
+
+
+			response = xhr.target.response;
+//console.log( 'response', response );
+
+			symbols = JSON.parse( response );
+
+console.log( 'symbols', symbols );
+
+		}
+
+	}
+
+
+	function updateListofNames() {
+
+		const str = inpText.value.toUpperCase();
+
+		let txt = '';
+		const spaces = '\xa0\xa0\xa0\xa0\xa0';
+		const apiKey = inpApiKey.value ? inpApiKey.value : '';
+
+		if ( str === '' ) { console.log( 'str', str ); return; }
+
+		for ( symbol of symbols ) {
+
+			if ( symbol.symbol.includes ( str ) ) {
+
+				txt +=
+				'<a href="https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=' + symbol.symbol + '&apikey=' + apiKey + '" target=_blank >' +
+				 ( symbol.symbol + spaces ).slice( 0, 6 ) +
+				 '</a>: ' + symbol.name + '<br>';
+
+			}
+
+		}
+
+		divContents.innerHTML = txt ? txt : 'No name found';
+
+	}
+
+</script>
+</body>
+</html>
