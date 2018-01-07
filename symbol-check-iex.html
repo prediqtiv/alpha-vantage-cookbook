@@ -101,7 +101,8 @@ console.log( 'symbols', symbols );
 
 		let items = [];
 
-		const len = count + 100 < symbols.length ? count + 100 : symbols.length - count;
+		const len = count + 100 < symbols.length ? count + 100 : count + symbols.length - count;
+//console.log( 'count', count, 'len', len );
 
 		for ( let i = count; i < len; i++ ) {
 
@@ -117,6 +118,8 @@ console.log( 'symbols', symbols );
 
 		const url = 'https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=' + items.join() + '&apikey=' + apiKey;
 
+//console.log( 'url', url );
+
 		requestFile( url, callbackListItems );
 
 	}
@@ -128,7 +131,11 @@ console.log( 'symbols', symbols );
 		const response = xhr.target.response;
 //console.log( 'response', response );
 
-		const itemsChecked = JSON.parse( response );
+		let itemsChecked = JSON.parse( response );
+
+console.log( 'itemsChecked', itemsChecked );
+		itemsChecked = itemsChecked['Stock Quotes'];
+
 
 		const len = count + 100 < symbols.length ? count + 100 : symbols.length - count;
 
@@ -138,11 +145,12 @@ console.log( 'symbols', symbols );
 
 			const item = itemsChecked[ i ];
 
-			if ( !item.symbol || !item.price || !item.timestamp ){
+			if ( !item[ '1. symbol' ] || !item[ '2. price' ] || !item[ '4. timestamp' ] ) {
 
-				txt += ( count + i ) + '. ' + symbols[ count + i ] + ' - ' + item + '<br>';
+				txt += ( count + i ) + '. ' + symbols[ count + i ].symbol + ' - ' + item[ '1. symbol' ] + '<br>';
 
 			}
+
 		}
 
 		const newCount = count + 100;
