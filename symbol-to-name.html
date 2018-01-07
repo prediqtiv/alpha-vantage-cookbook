@@ -3,20 +3,15 @@
 <head>
 <meta charset = "utf-8" >
 <meta name = "viewport" content= "width=device-width, initial-scale=1">
-<meta name = "description" content = "Basic HTML template" >
-<meta name = "keywords" content = "JavaScript,GitHub,FOSS,3D,STEM" >
-<meta name = "date" content = "2017-12-15" >
+<meta name = "description" content = "Enter text, get symbol and company names, link to Alpha Vantage data" >
+<meta name = "keywords" content = "Alpha Vantage,JavaScript,GitHub,FOSS,3D,STEM" >
+<meta name = "date" content = "2018-01-06" >
 <title>Symbol to Name</title>
 <style>
 
 	body { font: 12pt monospace; margin: 0 auto; max-width: 800px; }
 	a { color: crimson; text-decoration: none; }
 	a:hover, a:focus { background-color: yellow; color: #aaa; text-decoration: underline }
-
-	button, input[type=button] { background-color: #ddd; border: none; color: #322; cursor: pointer; padding: 3px 5px; }
-	button:hover { background: #ccc; color: #fff }
-
-/*	#divMenu { left: 0; margin: 20px; max-width: 300px; position: absolute; top: 0; } */
 
 </style>
 </head>
@@ -26,7 +21,7 @@
 
 		<p>
 			enter text: <input id=inpText oninput=updateListofNames(); > &nbsp;
-			enter api key: <input id=inpApiKey >
+			enter api key: <input id=inpApiKey title='For AV data, enter key before search' >
 		</p>
 
 		<div id = "divContents" >
