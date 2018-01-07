@@ -22,8 +22,20 @@ Click any of the links in the left menu to run the demo.
 * <https://www.alphavantage.co/documentation/>
 * <https://www.alpha-vantage.community/>
 
+## Comments of feedbak?
+
+Please leave a message here: <https://github.com/prediqtiv/alpha-vantage-cookbook/issues>
 
 ## Change Log
+
+### 2018-01-07 ~ Theo
+
+* Add symbol-check-iex.html
+
+### 2018-01-06 ~ Theo
+
+* Add symbol-to-name.html
+* symbol-lists.md
 
 ### 2018-01-05 ~ Theo
 
