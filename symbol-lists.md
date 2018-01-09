@@ -71,3 +71,4 @@ Gathering the data for all the exchanges would probably take less than a day. Wr
 ## Links of Interest
 
 * <http://www.hedgechatter.com/96-stocks-apis-bloomberg-nasdaq-and-etrade/>
+* <http://www.eoddata.com/>

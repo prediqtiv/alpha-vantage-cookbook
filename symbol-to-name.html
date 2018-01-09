@@ -31,7 +31,7 @@
 			enter api key: <input id=inpApiKey oninput=setStorage(); title='For AV data, enter key before search' >
 		</p>
 
-		<div id = "divContents" >
+		<table id = "tblData" ></table>
 
 <script>
 
@@ -87,6 +87,7 @@ console.log( 'symbols', symbols );
 	}
 
 
+
 	function updateListOfNames() {
 
 		const str = inpText.value.toUpperCase();
@@ -102,17 +103,17 @@ console.log( 'symbols', symbols );
 			if ( symbol.symbol.includes ( str ) ) {
 
 				txt +=
-				'<a href="https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=' + symbol.symbol + '&apikey=' + apiKey + '" target=_blank >' +
-				 ( symbol.symbol + spaces ).slice( 0, 6 ) +
-				 '</a>: ' +
-				 symbol.type + ' : ' +
-				symbol.name + '<br>';
-
+				'<tr>' +
+				'<td><a href="https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=' + symbol.symbol + '&apikey=' + apiKey + '" target=_blank >' +
+				 	( symbol.symbol + spaces ).slice( 0, 6 ) + '</a>: </td>' +
+				'<td>' + symbol.type + '&nbsp;: </td>' +
+				'<td>' + symbol.name + '</td>' +
+				'</tr>';
 			}
 
 		}
 
-		divContents.innerHTML = txt ? txt : 'No name found';
+		tblData.innerHTML = txt ? txt : 'No name found';
 
 	}
 

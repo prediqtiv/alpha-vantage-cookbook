@@ -41,3 +41,9 @@ https://en.wikipedia.org/wiki/List_of_exchange-traded_funds
 https://en.wikipedia.org/wiki/Exchange-traded_note
 
 As of April 2008, there were 56 ETNs from nine issuers tracking different indexes.
+
+## _How to get data on non-US stocks?_
+
+If you want to get data of Stocks from other exchanges other then US-Stock exchanges then you need to do something like this, If I wanted to get the stock value for TITAN from Indian Exchange NSE, then I need to use this in symbol NSE:TITAN .
+
+<https://github.com/RomelTorres/alpha_vantage/issues/13#issuecomment-344839209>

@@ -22,11 +22,25 @@ Click any of the links in the left menu to run the demo.
 * <https://www.alphavantage.co/documentation/>
 * <https://www.alpha-vantage.community/>
 
+### IEX Trading
+
+* <https://iextrading.com/>
+* <https://iextrading.com/developer/>
+
+
 ## Comments of feedbak?
+
 
 Please leave a message here: <https://github.com/prediqtiv/alpha-vantage-cookbook/issues>
 
+
 ## Change Log
+
+
+### 2018-01-09 ~ Theo
+
+* Add symbol-to-name-plus-details.html
+
 
 ### 2018-01-07 ~ Theo
 
@@ -42,7 +56,7 @@ Please leave a message here: <https://github.com/prediqtiv/alpha-vantage-cookboo
 * Add three more examples
 * Add basic CMS
 
-### 2018-01-04 ~ heo
+### 2018-01-04 ~ Theo
 
 * First commit
 * Add Read Me
