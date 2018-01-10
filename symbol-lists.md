@@ -52,13 +52,19 @@ Below are links to web pages that allow you to download list of constituents. Th
 Gathering the data for all the exchanges would probably take less than a day. Writing a utility that downloaded each list and nade the data available via GitHu pages or any static server might take a day or two.
 
 
-### Euronext - Amsterdam Stock Exchange
-
-* <https://www.euronext.com/en/equities/directory>
 
 ### ASX - Sydney
 
 * <http://www.asx.com.au/asx/research/listedCompanies.do>
+
+### Euronext - Amsterdam Stock Exchange
+
+* <https://www.euronext.com/en/equities/directory>
+
+### London Stock Exchange
+
+* <http://www.londonstockexchange.com/statistics/companies-and-issuers/companies-and-issuers.htm>
+
 
 ### OMX - Stockholm
 
