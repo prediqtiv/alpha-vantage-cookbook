@@ -56,14 +56,22 @@ Gathering the data for all the exchanges would probably take less than a day. Wr
 ### ASX - Sydney
 
 * <http://www.asx.com.au/asx/research/listedCompanies.do>
+* <http://www.asx.com.au/asx/research/ASXListedCompanies.csv>
 
-### Euronext - Amsterdam Stock Exchange
+### Euronext Stock Exchange
 
 * <https://www.euronext.com/en/equities/directory>
+
+Cannot get via a link. Must click button
 
 ### London Stock Exchange
 
 * <http://www.londonstockexchange.com/statistics/companies-and-issuers/companies-and-issuers.htm>
+
+List of listed company names - bot does not include the symbols
+
+#### Instrument list
+* <http://www.londonstockexchange.com/statistics/companies-and-issuers/instruments-defined-by-mifir-identifiers-list-on-lse.xlsx>
 
 
 ### OMX - Stockholm

@@ -6,7 +6,7 @@
 <meta name = "description" content = "Basic HTML template" >
 <meta name = "keywords" content = "JavaScript,GitHub,FOSS,3D,STEM" >
 <meta name = "date" content = "2018-01-04" >
-<title>Alpha Vantage Cookbook ~ Get Data Save Interactive</title>
+<title>Alpha Vantage Cookbook ~ Get Data Save to File</title>
 <style>
 /* Copyright (c) 2018 predIQtiv. MIT License */
 
@@ -22,10 +22,10 @@
 	<h3>
 		<a href="https://github.com/prediqtiv/alpha-vantage-cookbook/blob/master/03-alpha-vantage-get-data-save-interactive.html" target="_blank"><img src="https://status.github.com/images/invertocat.png" height=18 title='Octocat' ></a>
 
-		<a href="" >Alpha Vantage Cookbook ~ Get Data Save Interactive</a>
+		<a href="" >Alpha Vantage Cookbook ~ Get Data Save to File</a>
 	</h3>
 
-	<p>API key: <input id=inpApiKey value='demo' ></p>
+	<p>API key: <input id=inpApiKey onchange=setStorage(); value='demo' ></p>
 
 	<p>Symbol: &nbsp;<input id=inpSymbol value='MSFT' ></p>
 
@@ -39,22 +39,24 @@
 <script>
 // Thanks to http://www.alphavantage.co/
 
-/*
-
-Remember to upate the API key field with your key
-
-Get your key here: https://www.alphavantage.co/support/#api-key
-
-'Demo' API Key works only for exact copies of the demos in the documentation
-
-*/
-
+	let apiKey;
 
 	let symbol;
 
-	function getAlphaVantagedata() {
+	init();
 
-		const apiKey = inpApiKey.value;
+
+	function init() {
+
+		apiKey = localStorage.getItem( 'apiKey' );
+
+		inpApiKey.value = apiKey ? apiKey : '' ;
+
+	}
+
+
+
+	function getAlphaVantagedata() {
 
 		symbol = inpSymbol.value;
 
@@ -63,6 +65,7 @@ Get your key here: https://www.alphavantage.co/support/#api-key
 		requestFile( url );
 
 	}
+
 
 
 	function requestFile( url ) {
@@ -90,6 +93,7 @@ console.log( 'json', json );
 	}
 
 
+
 	function saveDataToFile() {
 
 		const blob = new Blob( [ divContents.innerText ] );
@@ -100,6 +104,17 @@ console.log( 'json', json );
 		a = null;
 
 	}
+
+
+
+	function setStorage() {
+
+		apiKey = inpApiKey.value;
+		localStorage.setItem('apiKey', apiKey );
+
+	}
+
+
 
 </script>
 </body>

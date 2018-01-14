@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang = "en" >
+<head>
+<meta charset = "utf-8" >
+<meta name = "viewport" content= "width=device-width, initial-scale=1">
+<meta name = "description" content = "Enter text, get symbol and company names, link to Alpha Vantage data" >
+<meta name = "keywords" content = "Alpha Vantage,IEX,JavaScript,GitHub,FOSS,3D,STEM" >
+<meta name = "date" content = "2018-01-06" >
+<title>Symbol to Name ~ London Stock Exchange</title>
+<style>
+
+	body { font: 12pt monospace; margin: 0 auto; max-width: 800px; }
+	a { color: crimson; text-decoration: none; }
+	a:hover, a:focus { background-color: yellow; color: #aaa; text-decoration: underline }
+
+</style>
+</head>
+<body>
+
+		<h3>
+			<a href="https://github.com/prediqtiv/alpha-vantage-cookbook/blob/master/symbol-to-name.html" target="_top" ><img src="https://status.github.com/images/invertocat.png" height=18 ></a>
+
+			<a href = "" >Symbol to Name</a> to
+			<a href=https://www.alphavantage.co > Alpha Vantage</a> Data via
+			<a href=http://www.londonstockexchange.com >London Stock Exchange</a> list
+
+		</h3>
+
+		<p>
+			enter text: <input id=inpText oninput=updateListOfNames(); > &nbsp;
+			enter api key: <input id=inpApiKey oninput=setStorage(); title='For AV data, enter key before search' >
+		</p>
+
+		<div id=divLog ></div>
+
+		<table id = "tblData" ></table>
+
+<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+<script>
+// https://github.com/SheetJS/js-xlsx
+
+	const url = 'http://www.londonstockexchange.com/statistics/companies-and-issuers/instruments-defined-by-mifir-identifiers-list-on-lse.xlsx';
+
+	let symbols;
+
+
+	init();
+
+	function init() {
+
+		const apiKey = localStorage.getItem( 'apiKey' );
+
+		inpApiKey.value = apiKey ? apiKey : '' ;
+		const  urlCORS = 'https://cors-anywhere.herokuapp.com/';
+
+		requestFile( urlCORS + url, processWB );
+
+	}
+
+
+
+	function setStorage() {
+
+		const apiKey = inpApiKey.value;
+
+		localStorage.setItem( 'apiKey', apiKey );
+
+	}
+
+
+
+	function requestFile( url, callback ) {
+
+		const xhr = new XMLHttpRequest();
+		xhr.crossOrigin = 'anonymous';
+		xhr.open( 'GET', url, true );
+		xhr.onerror = function( xhr ) { console.log( 'error:', xhr  ); };
+		xhr.onprogress = function( xhr ) { divLog.innerHTML = 'bytes loaded:' + xhr.loaded; }; /// or something
+		xhr.responseType = 'arraybuffer';
+		xhr.onload = callback;
+		xhr.send( null );
+
+	}
+
+
+
+	function processWB( xhr ) {
+
+		const data = new Uint8Array( xhr.target.response );
+		workbook = XLSX.read( data, { type: "array" } );
+
+		const firstSheetName = workbook.SheetNames[ 0 ];
+		const ws = workbook.Sheets[ firstSheetName ];
+		const ref = XLSX.utils.decode_range( ws[ '!ref' ] );
+		const lastRow = ref.e.r;
+		divLog.innerHTML = ws[ 'A6' ].v ;
+
+console.log( 'workbook',workbook );
+
+		getColumn();
+
+	}
+
+	function getColumn() {
+
+		const firstSheetName = workbook.SheetNames[ 0 ];
+		const ws = workbook.Sheets[ firstSheetName ];
+
+		const ref = XLSX.utils.decode_range( ws[ '!ref' ] );
+		const lastRow = ref.e.r;
+
+		ws['!ref'] = 'A8:J' + ( lastRow - 1 );
+
+//		symbols = XLSX.utils.sheet_to_csv( ws ).split( '\n' );
+
+		symbols = XLSX.utils.sheet_to_json( ws );
+
+//		divLog.innerText = JSON.stringify( symbols );
+
+		console.log( 'symbols', symbols );
+
+	}
+
+
+
+	function updateListOfNames() {
+
+		const str = inpText.value.toUpperCase();
+
+		let txt = '';
+		const spaces = '\xa0\xa0\xa0\xa0\xa0';
+		const apiKey = inpApiKey.value ? inpApiKey.value : '';
+
+		if ( str === '' ) { console.log( 'str', str ); return; }
+
+		for ( symbol of symbols ) {
+
+			if ( symbol.TIDM.includes ( str ) ) {
+
+				txt +=
+				'<tr>' +
+				'<td><a href="https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=LON:' + symbol.TIDM + '&apikey=' + apiKey + '" target=_blank >' +
+				 	'LON:' + ( symbol.TIDM + spaces ).slice( 0, 6 ) + '</a>: </td>' +
+				'<td>' + symbol[ 'MiFIR Identifier Code' ] + '&nbsp;: </td>' +
+				'<td>' + symbol[ 'Issuer Name' ] + '/' + symbol[ 'Instrument Name' ] + '</td>' +
+				'<td>' + symbol[ 'Country of Incorporation' ] + '</td>' +
+				'</tr>';
+			}
+
+		}
+
+		tblData.innerHTML = txt ? txt : 'No name found';
+
+	}
+
+</script>
+</body>
+</html>

@@ -5,13 +5,22 @@
 
 #  [PreIQtiv ~ Alpha Vantage Cookbook]( #README.md )
 
-JavaScript examples to help you with accessing market data from [Alpha Vantage]( https://www.alphavantage.co/ )
+Here is how the [Alpha Vantage]( https://www.alphavantage.co/ ) describes itself:
+> Alpha Vantage offers free APIs in JSON and CSV formats for realtime and historical stock and forex data, digital/crypto currency data and over 50 technical indicators. Supports intraday, daily, weekly, and monthly quotes and technical analysis with chart-ready time series. 100% free with unlimited API calls.
+
+The web pages here offer you JavaScript examples to help you with accessing market data from Alpha Vantage
 
 Everything here is plain-vanilla JavaScript - designed to be easy to transfer into your preferred library or language.
 
 ## Scripts
 
 Click any of the links in the left menu to run the demo.
+
+### Introduction to JavaScript for Alpha Vantage
+
+Five simple and basic scripts to get you started
+
+
 
 <img src="https://status.github.com/images/invertocat.png" height=18 title='Octocat' > Click icon to view source code on GitHub.
 
@@ -22,6 +31,9 @@ Click any of the links in the left menu to run the demo.
 * <https://www.alphavantage.co/documentation/>
 * <https://www.alpha-vantage.community/>
 
+### Users
+
+* <https://www.deriscope.com/>
 ### IEX Trading
 
 * <https://iextrading.com/>

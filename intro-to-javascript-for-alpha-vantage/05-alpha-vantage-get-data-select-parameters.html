@@ -6,7 +6,7 @@
 <meta name = "description" content = "Basic HTML template" >
 <meta name = "keywords" content = "JavaScript,GitHub,FOSS,3D,STEM" >
 <meta name = "date" content = "2018-01-04" >
-<title>Alpha Vantage Cookbook ~ Get Data Save Interactive</title>
+<title>Alpha Vantage Cookbook ~ Get Data Selected Parameters</title>
 <style>
 /* Copyright (c) 2018 predIQtiv. MIT License */
 
@@ -21,10 +21,10 @@
 
 	<h3>
 		<a href="https://github.com/prediqtiv/alpha-vantage-cookbook/blob/master/04-alpha-vantage-get-data-save-interactive-select.html" target="_blank"><img src="https://status.github.com/images/invertocat.png" height=18 title='Octocat' ></a>
-		<a href="" >Alpha Vantage Cookbook ~ Get Data Save Interactive</a>
+		<a href="" >Alpha Vantage Cookbook ~ Get Data Select Parameters</a>
 	</h3>
 
-	<p>API key: <input id=inpApiKey value='demo' ></p>
+	<p>API key: <input id=inpApiKey onchange=setStorage(); value='demo' ></p>
 
 	<p>Symbol: &nbsp;<input id=inpSymbol value='MSFT' ></p>
 
@@ -53,6 +53,7 @@
 			</select>
 		</span>
 	</p>
+
 	<p>
 
 		output size:
@@ -68,6 +69,7 @@
 		</select>
 
 	</p>
+
 	<p>
 		<button onclick=getAlphaVantagedata(); >get Alpha Vantage Data</button>
 		 &nbsp; <button onclick=saveDataToFile(); >Save data to file</button>
@@ -78,18 +80,23 @@
 <script>
 // Thanks to http://www.alphavantage.co/
 
-/*
-
-Remember to upate the API key field with your key
-
-Get your key here: https://www.alphavantage.co/support/#api-key
-
-'Demo' API Key works only for exact copies of the demos in the documentation
-
-*/
-
+	let apiKey;
 
 	let symbol;
+
+
+	init();
+
+
+	function init() {
+
+		apiKey = localStorage.getItem( 'apiKey' );
+
+		inpApiKey.value = apiKey ? apiKey : '' ;
+
+	}
+
+
 
 	function getAlphaVantagedata() {
 
@@ -97,8 +104,6 @@ Get your key here: https://www.alphavantage.co/support/#api-key
 		const size = selSize.value;
 		const type = selType.value;
 		const interval = selInterval.value;
-
-		const apiKey = inpApiKey.value;
 
 		symbol = inpSymbol.value;
 
@@ -149,11 +154,13 @@ console.log( 'json', json );
 	}
 
 
+
 	function setInterval() {
 
 		spnInterval.style.display = selFunction.value !== 'TIME_SERIES_INTRADAY' ? 'none' : '';
 
 	}
+
 
 
 	function saveDataToFile() {
@@ -166,6 +173,24 @@ console.log( 'json', json );
 		a = null;
 
 	}
+
+
+
+	function setStorage() {
+
+		apiKey = inpApiKey.value;
+		localStorage.setItem('apiKey', apiKey );
+
+	}
+
+
+
+	function getStorage() {
+
+		apiKey = localStorage.getItem( 'apiKey' );
+
+	}
+
 
 </script>
 </body>
