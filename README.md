@@ -3,7 +3,7 @@
 
 ![]( https://prediqtiv.github.io/images/predIQtiv-logo2.png =200x50 )
 
-#  [PreIQtiv ~ Alpha Vantage Cookbook]( #README.md )
+#  [Alpha Vantage Cookbook Read Me]( #README.md )
 
 Here is how the [Alpha Vantage]( https://www.alphavantage.co/ ) describes itself:
 > Alpha Vantage offers free APIs in JSON and CSV formats for realtime and historical stock and forex data, digital/crypto currency data and over 50 technical indicators. Supports intraday, daily, weekly, and monthly quotes and technical analysis with chart-ready time series. 100% free with unlimited API calls.
@@ -14,16 +14,25 @@ Everything here is plain-vanilla JavaScript - designed to be easy to transfer in
 
 ## Scripts
 
-Click any of the links in the left menu to run the demo.
-
-### Introduction to JavaScript for Alpha Vantage
-
-Five simple and basic scripts to get you started
 
 
+### [Introduction to JavaScript for Alpha Vantage]( https://prediqtiv.github.io/alpha-vantage-cookbook/index.html#intro-to-javascript-for-alpha-vantage/README.md )
 
-<img src="https://status.github.com/images/invertocat.png" height=18 title='Octocat' > Click icon to view source code on GitHub.
+Five simple and basic scripts to get you started with coding the calls to Alpha Vantage that suit your specific needs,
 
+These scripts have two objectives:
+
+* Easy enough for beginner programmers to read and edit
+* Generic enough to be easily translated to other languages or JavaScript libraries
+
+
+### Tips
+
+Click any of the links in the left menu to view the file or run the demo.
+
+[<img src="https://status.github.com/images/invertocat.png" height=18 title='Octocat' >]( https://github.com/prediqtiv/alpha-vantage-cookbook/blob/master/index.html ) Wherever you see this icon, click it to view source code on GitHub.
+
+***
 
 ## Links of Interest
 
@@ -40,14 +49,18 @@ Five simple and basic scripts to get you started
 * <https://iextrading.com/developer/>
 
 
-## Comments of feedbak?
-
+## Comments of feedback?
 
 Please leave a message here: <https://github.com/prediqtiv/alpha-vantage-cookbook/issues>
 
 
 ## Change Log
 
+### 2018-01-14 ~ Theo
+
+* Move intro scripts to own folder
+	* Updates to each file
+* Add much text to read me files
 
 ### 2018-01-09 ~ Theo
 

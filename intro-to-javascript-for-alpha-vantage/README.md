@@ -1,7 +1,7 @@
 
 # Introduction to JavaScript for Alpha Vantage
 
-Five simple and basic scripts to get you started
+Five simple and basic scripts to get you started with coding the calls to Alpha Vantage that suit your specific needs,
 
 Click any of the file names to run the script.
 
