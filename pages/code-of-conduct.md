@@ -1,6 +1,6 @@
 # Contributor Covenant Code of Conduct
 
-[contact us at Ladybug Tools/Spider]( https://github.com/ladybug-tools/spider/issues ). 
+[contact us at predIQtiv]( https://github.com/prediqtiv/issues ).
 
 ## Our Pledge
 
