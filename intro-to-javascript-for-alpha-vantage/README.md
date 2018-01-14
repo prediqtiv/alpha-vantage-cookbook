@@ -33,7 +33,7 @@ Things to do: Add local storage for your favorite symbol.
 
 ## [04-alpha-vantage-get-data-save-to-file.html]( #intro-to-javascript-for-alpha-vantage/04-alpha-vantage-get-data-save-to-file.html )
 
-Once you have the data, it's nice to be able to save the data to a local file.
+Once you have the data, it's nice to be able to save the data to a local file. This script as a 'save data to file button'.
 
 Things to do: Add a date to the suggested file name. Save the data to a JSON file.
 
