@@ -326,13 +326,13 @@
 						'<td>' +
 
 // choose to access remote or local files
-							'<a href=#' + urlGitHubPage + pathRepo + itemPath +
-//							'<a href=#' + itemPath +
+//							'<a href=#' + urlGitHubPage + pathRepo + itemPath +
+							'<a href=#' + itemPath +
 
 							' title="' + item.size.toLocaleString() + ' bytes" > ' + item.name + '</a> ' +
 // choose to access remote or local files
-							( item.path.endsWith( 'html' ) ? '<a href=' + urlGitHubPage + pathRepo + itemPath + ' >&#x2750;</a>' : '' ) +
-//							( item.path.endsWith( 'html' ) ? '<a href=' + itemPath + ' >&#x2750;</a>' : '' ) +
+//							( item.path.endsWith( 'html' ) ? '<a href=' + urlGitHubPage + pathRepo + itemPath + ' >&#x2750;</a>' : '' ) +
+							( item.path.endsWith( 'html' ) ? '<a href=' + itemPath + ' >&#x2750;</a>' : '' ) +
 
 						'</td>' +
 
@@ -341,8 +341,8 @@
 				if ( ( !location.hash || location.hash.toLowerCase().endsWith( 'readme.md' ) )
 						&& item.path !== 'README.md' && item.name.toLowerCase() === 'readme.md' ) {
 
-					location.hash = urlGitHubPage + pathRepo + itemPath;
-//					location.hash = itemPath;
+//					location.hash = urlGitHubPage + pathRepo + itemPath;
+					location.hash = itemPath;
 
 				}
 
