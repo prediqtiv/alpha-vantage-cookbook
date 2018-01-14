@@ -3,9 +3,9 @@
 
 ## [symbol-to-name-iex.html]( #symbol-validate/symbol-to-name-iex.html )
 
-## [symbol-to-name-iex-plus-details.html]( #symbol-validate/symbol-to-name-iex-plus-details.html)
+## [symbol-to-name-iex-plus-details.html]( #symbol-validate/symbol-to-name-iex-plus-details.html )
 
-## [symbol-to-name-lon.html] ( #symbol-validate/symbol-to-name-lon.html )
+## [symbol-to-name-lon.html]( #symbol-validate/symbol-to-name-lon.html )
 
 ***
 
