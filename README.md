@@ -25,6 +25,10 @@ These scripts have two objectives:
 * Easy enough for beginner programmers to read and edit
 * Generic enough to be easily translated to other languages or JavaScript libraries
 
+### [Symbol Validate]( https://prediqtiv.github.io/alpha-vantage-cookbook/index.html#symbol-validate/README.md )
+
+* Scripts to help you correlate and validate symbols with company names and other pertinent data
+* Scripts to help you confirm that Alpha Vantage supports particular symbols from a variety of exchanges
 
 ### Tips
 
@@ -43,6 +47,7 @@ Click any of the links in the left menu to view the file or run the demo.
 ### Users
 
 * <https://www.deriscope.com/>
+
 ### IEX Trading
 
 * <https://iextrading.com/>
