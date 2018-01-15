@@ -1,7 +1,7 @@
 
 # Introduction to JavaScript for Alpha Vantage
 
-Five simple and basic scripts to get you started with coding the calls to Alpha Vantage that suit your specific needs,
+Five simple and basic scripts to get you started with coding the calls to Alpha Vantage that suit your specific needs.
 
 Click any of the file names to run the script.
 
@@ -26,14 +26,14 @@ Things to do: Edit the default values for the two input boxes.
 
 ## [03-alpha-vantage-get-data-local-storage.html]( #intro-to-javascript-for-alpha-vantage/03-alpha-vantage-get-data-local-storage.html )
 
-Entering your API key  becomes tedious very quickly. This script adds storing the key in the browser's [localStorage]( https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage )
+Entering your API key  becomes tedious very quickly. This script adds storing the key in the browser's [localStorage]( https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage ).
 
 Things to do: Add local storage for your favorite symbol.
 
 
 ## [04-alpha-vantage-get-data-save-to-file.html]( #intro-to-javascript-for-alpha-vantage/04-alpha-vantage-get-data-save-to-file.html )
 
-Once you have the data, it's nice to be able to save the data to a local file. This script as a 'save data to file button'.
+Once you have the data, it's nice to be able to save the data to a local file. This script adds a 'save data to file button'.
 
 Things to do: Add a date to the suggested file name. Save the data to a JSON file.
 

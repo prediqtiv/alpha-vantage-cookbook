@@ -189,13 +189,13 @@
 			ulc = url.toLowerCase();
 
 // better to add breadcrumbs below
-//			crumbs = url.lastIndexOf( '/' ) > 0 ? url.slice( 0, url.lastIndexOf( '/' ) ) : '';
+			crumbs = url.lastIndexOf( '/' ) > 0 ? url.slice( 0, url.lastIndexOf( '/' ) ) : '';
 //console.log( url.lastIndexOf( '/' ), crumbs );
-//			setBreadcrumbs( crumbs );
+			setBreadcrumbs( crumbs );
 //console.log( 'crumbs',  crumbs );
 
 //			requestFile( urlGitHubApiContents + url.slice( 0, url.lastIndexOf( '/' ) + 1 ), callbackGitHubMenu );
-//			requestFile( url.slice( 0, url.lastIndexOf( '/' ) + 1 ), callbackGitHubMenu );
+			requestFile( url.slice( 0, url.lastIndexOf( '/' ) + 1 ), callbackGitHubMenu );
 
 		}
 
@@ -223,7 +223,7 @@
 			url2 = 'https://api.github.com/repos/' + bits[ 0 ] + '/' + bits[ 1 ] + '/contents/' + bits[ 2 ];
 //console.log( '', url2 );
 
-			requestFile( url2, callbackGitHubMenu );
+//			requestFile( url2, callbackGitHubMenu );
 
 		} else {
 

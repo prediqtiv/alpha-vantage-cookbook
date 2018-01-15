@@ -18,7 +18,7 @@ Everything here is plain-vanilla JavaScript - designed to be easy to transfer in
 
 ### [Introduction to JavaScript for Alpha Vantage]( https://prediqtiv.github.io/alpha-vantage-cookbook/index.html#intro-to-javascript-for-alpha-vantage/README.md )
 
-Five simple and basic scripts to get you started with coding the calls to Alpha Vantage that suit your specific needs,
+Five simple and basic scripts to get you started with coding the calls to Alpha Vantage that suit your specific needs.
 
 These scripts have two objectives:
 
