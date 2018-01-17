@@ -58,6 +58,16 @@ Gathering the data for all the exchanges would probably take less than a day. Wr
 * <http://www.asx.com.au/asx/research/listedCompanies.do>
 * <http://www.asx.com.au/asx/research/ASXListedCompanies.csv>
 
+### BSE
+
+<http://www.bseindia.com/>
+
+Working:
+
+https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NYSE:WIT&apikey=tbd1
+https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=BSE:507685&apikey=tbd1
+https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BSE:507685&apikey=tbd1
+
 ### Euronext Stock Exchange
 
 * <https://www.euronext.com/en/equities/directory>
@@ -73,6 +83,13 @@ List of listed company names - bot does not include the symbols
 #### Instrument list
 * <http://www.londonstockexchange.com/statistics/companies-and-issuers/instruments-defined-by-mifir-identifiers-list-on-lse.xlsx>
 
+### JSE Johannesburg stock exchange
+
+Use finance.yahoo.com and type in the name of the company in the search box. If it's traded on the JSE it will show the symbol followed by the suffix .JO. Use that suffix in your API call.  ABSP.JO is Absa Bank Limited, for example.
+
+https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=SOL.JO&apikey=tbd1
+
+https://www.african-markets.com/en/stock-markets/jse/listed-companies
 
 ### OMX - Stockholm
 
@@ -81,6 +98,11 @@ List of listed company names - bot does not include the symbols
 ### OMCX - Copenhagen
 
 * <http://www.nasdaqomxnordic.com/shares/listed-companies/copenhagen>
+
+## NSE
+
+https://www.nseindia.com/content/indices/ind_nifty500list.csv
+
 
 ## Links of Interest
 

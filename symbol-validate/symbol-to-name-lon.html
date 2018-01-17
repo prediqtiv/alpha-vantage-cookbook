@@ -51,6 +51,7 @@
 		const apiKey = localStorage.getItem( 'apiKey' );
 
 		inpApiKey.value = apiKey ? apiKey : '' ;
+
 		const  urlCORS = 'https://cors-anywhere.herokuapp.com/';
 
 		requestFile( urlCORS + url, processWB );

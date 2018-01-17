@@ -76,6 +76,30 @@
 
 
 
+	function requestFile( url ) {
+
+		const xhr = new XMLHttpRequest();
+		xhr.crossOrigin = 'anonymous';
+		xhr.open( 'GET', url, true );
+		xhr.onerror = function( xhr ) { console.log( 'error:', xhr  ); };
+//		xhr.onprogress = function( xhr ) { console.log( 'bytes loaded:', xhr.loaded  ); }; /// or something
+		xhr.onload = callback;
+		xhr.send( null );
+
+		function callback( xhr ) {
+
+			response = xhr.target.response;
+//console.log( 'response', response );
+
+			symbols = JSON.parse( response );
+
+console.log( 'symbols', symbols );
+
+		}
+
+	}
+
+
 	function updateListOfNames() {
 
 		const str = inpText.value.toUpperCase();
