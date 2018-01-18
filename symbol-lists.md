@@ -68,6 +68,25 @@ https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NYSE:WIT&api
 https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=BSE:507685&apikey=tbd1
 https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BSE:507685&apikey=tbd1
 
+https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=BSE:500470&apikey=tbd1
+
+https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BSE:507685&apikey=tbd1
+
+### sensex
+https://en.wikipedia.org/wiki/BSE_SENSEX
+
+HDFC *
+http://www.bseindia.com/stock-share-price/housing-development-finance-corpltd/hdfc/500010/
+SBIN
+http://www.bseindia.com/stock-share-price/state-bank-of-india/sbin/500112/
+LT
+http://www.bseindia.com/stock-share-price/larsen--toubro-ltd/lt/500510/
+YESBANK *
+http://www.bseindia.com/stock-share-price/yes-bank-ltd/yesbank/532648/
+HDFCBANK
+http://www.bseindia.com/stock-share-price/hdfc-bank-ltd/hdfcbank/500180/
+
+
 ### Euronext Stock Exchange
 
 * <https://www.euronext.com/en/equities/directory>
@@ -103,6 +122,16 @@ https://www.african-markets.com/en/stock-markets/jse/listed-companies
 
 https://www.nseindia.com/content/indices/ind_nifty500list.csv
 
+## Shanghai Stock Exchang
+
+https://en.wikipedia.org/wiki/Shanghai_Stock_Exchange
+http://english.sse.com.cn/
+http://english.sse.com.cn/listed/company/
+
+
+https://en.wikipedia.org/wiki/Shenzhen_Stock_Exchange
+http://www.szse.cn/main/en/
+http://www.szse.cn/main/en/marketdata/stockinformation/
 
 ## Links of Interest
 
