@@ -3,9 +3,9 @@
 <head>
 <meta charset = "utf-8" >
 <meta name = "viewport" content= "width=device-width, initial-scale=1">
-<meta name = "description" content = "List and view all the files in all the folders. File wrangler. Default index.html file. Opens HTML or Markdown files. Passes location.hash." >
+<meta name = "description" content = "This script allows you to list, open view all the files in all the Spider folders" >
 <meta name = "keywords" content = "JavaScript,Showdown,Markdown,GitHub,FOSS" >
-<meta name = "date" content = "2018-01-17" >
+<meta name = "date" content = "2018-01-16" >
 <title>predIQtiv ~ Alpha Vantage</title>
 
 <style>
@@ -44,7 +44,7 @@
 </style>
 </head>
 <body>
-<script src = "https://cdn.rawgit.com/showdownjs/showdown/1.8.6/dist/showdown.min.js" ></script>
+<script src = "https://cdn.rawgit.com/showdownjs/showdown/1.8.5/dist/showdown.min.js" ></script>
 
 
 	<div id = "divMenu" >
@@ -58,8 +58,8 @@
 		</p>
 
 		<h2>
-			<a id = "urlInfo" target="_top" ><img src="https://status.github.com/images/invertocat.png" height=18 title='Octocat' ></a>
-			<a href="" ><script> document.write( document.title )</script></a>
+			<a id = "urlInfo" target="_top" ><img src="https://status.github.com/images/invertocat.png" height=18 title='Octocat'  ></a>
+			<a href="" >Alpha Vantage Cookbook</a>
 		</h2>
 
 		<p><script> document.write(document.head.querySelector( '[name=description]' ).content ); </script></p>
@@ -80,11 +80,11 @@
 
 			<hr>
 
-			<div title='many thanks!' ><a href=#../pages/credits.md >Credits</a></div>
-			<div><a href=#../pages/code-of-conduct.md >Code of Conduct</a></div>
-			<div><a href=#../pages/contributing.md >Contributing</a></div>
-			<div><a href=#../pages/license.md >License</a></div>
-			<div><a href=#../pages/markdown-help.md >Markdown Help</a></div>
+			<div title='many thanks!' ><a href=#pages/credits.md >Credits</a></div>
+			<div><a href=#pages/code-of-conduct.md >Code of Conduct</a></div>
+			<div><a href=#pages/contributing.md >Contributing</a></div>
+			<div><a href=#pages/license.md >License</a></div>
+			<div><a href=#pages/markdown-help.md >Markdown Help</a></div>
 			<div><a href="javascript:(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='https://rawgit.com/mrdoob/stats.js/master/build/stats.min.js';document.head.appendChild(script);})()" title="Mr.doob's Stats.js appear in top left corner" >Show frames/second statistics</a></div>
 			<div><a href="https://api.github.com/rate_limit" target="_blank" title="Occasionaly this script breaks if you go over the GitHub API rate limit" >github rate limits</a></div>
 
@@ -101,6 +101,7 @@
 
 	</div>
 
+
 	<div id = "hamburger" onclick=toggleNav(); > slide &#9776;  </div>
 
 <script>
@@ -112,11 +113,11 @@
 	const uriDefaultFile = 'README.md';
 //	const uriDefaultFile = '../../plugins/view-github-issues.html'
 
-	const iconInfo = '<img src="https://status.github.com/images/invertocat.png" height=18 >';
+	const iconInfo = '<img src="https://status.github.com/images/invertocat.png" height=18 > </a>';
 
 	const urlGitHubApiContents = 'https://api.github.com/repos/' + user + repo + '/contents/' + pathRepo;
 
-	let urlGitHubPage;
+	const urlGitHubPage = 'https://rawgit.com/' + user + repo + '/master/';
 
 	const urlGitHubSource = 'https://github.com/' + user + repo;
 //	const urlGitHubSource = 'https://github.com/' + user + repo + '/blob/master/' + pathRepo;
@@ -125,9 +126,6 @@
 	init();
 
 	function init() {
-
-		urlGitHubPage = location.host.startsWith( user + '.github.io' ) ? '' : 'https://rawgit.com/' + user + repo + '/master/';
-//console.log( 'urlGitHubPage', urlGitHubPage );
 
 		urlInfo.href = urlGitHubSource;
 
@@ -147,27 +145,28 @@
 
 		if ( !location.hash ) {
 
-			url = urlGitHubPage + uriDefaultFile;
+			url = uriDefaultFile;
 			ulc = url.toLowerCase();
 
 		} else {
+
+//https://rawgit.com/ladybug-tools/spider/master
+//https://rawgit.com/pushme-pullyou/pushme-pullyou.github.io/master/
+//https://rawgit.com/predIQtiv/alpha-vantage-cookbook/master
 
 			url = location.hash.slice( 1 );
 			ulc = url.toLowerCase();
 
 //console.log( 'url', url );
 
-//https://rawgit.com/pushme-pullyou/pushme-pullyou.github.io/master/
-
-			start = ( 'https://rawgit.com/' + user + repo +'/master/' ).length;
-
-			crumbs = location.host.startsWith( 'pushme-pullyou.github.io' ) ? url : url.slice( start );
+//			crumbs = url.lastIndexOf( '/' ) > 0 ? url.slice( 0, url.lastIndexOf( '/' ) ) : '';			start =  url.lastIndexOf( '/' );
+			crumbs = url.startsWith( 'https://' ) ? url.slice( 59 ) : url;
 			crumbs2 = crumbs.lastIndexOf( '/' ) > 0 ? crumbs.slice( 0, crumbs.lastIndexOf( '/' ) ) : '';
 
 //console.log( 'crumbs2',  crumbs2 );
-
 			setBreadcrumbs( crumbs2 );
 
+//			requestFile( urlGitHubApiContents + url.slice( 0, url.lastIndexOf( '/' ) + 1 ), callbackGitHubMenu );
 			requestFile( urlGitHubApiContents + crumbs2, callbackGitHubMenu );
 
 		}
@@ -200,6 +199,7 @@
 	function getFolderContents( path = '' ) {
 
 		const url = urlGitHubApiContents + path;
+//		const url = path;
 
 		requestFile( url, callbackGitHubMenu );
 
@@ -267,7 +267,7 @@
 
 		}
 
-		const ignoreFiles = [ '.gitattributes', '.gitignore' ];
+		const ignoreFiles = [ '.gitattributes', '.gitignore', 'ladybug-tools-spider.html' ];
 
 		for ( let item of items ) {
 
@@ -284,13 +284,13 @@
 						'<td>' +
 
 // choose to access remote or local files
-							'<a href=#' + urlGitHubPage + pathRepo + itemPath +
-//							'<a href=#' + itemPath +
+//							'<a href=#' + urlGitHubPage + pathRepo + itemPath +
+							'<a href=#' + itemPath +
 
 							' title="' + item.size.toLocaleString() + ' bytes" > ' + item.name + '</a> ' +
 // choose to access remote or local files
-							( item.path.endsWith( 'html' ) ? '<a href=' + urlGitHubPage + pathRepo + itemPath + ' >&#x2750;</a>' : '' ) +
-//							( item.path.endsWith( 'html' ) ? '<a href=' + itemPath + ' >&#x2750;</a>' : '' ) +
+//							( item.path.endsWith( 'html' ) ? '<a href=' + urlGitHubPage + pathRepo + itemPath + ' >&#x2750;</a>' : '' ) +
+							( item.path.endsWith( 'html' ) ? '<a href=' + itemPath + ' >&#x2750;</a>' : '' ) +
 
 						'</td>' +
 
@@ -299,8 +299,8 @@
 				if ( ( !location.hash || location.hash.toLowerCase().endsWith( 'readme.md' ) )
 						&& item.path !== 'README.md' && item.name.toLowerCase() === 'readme.md' ) {
 
-					location.hash = urlGitHubPage + pathRepo + itemPath;
-//					location.hash = itemPath;
+//					location.hash = urlGitHubPage + pathRepo + itemPath;
+					location.hash = itemPath;
 
 				}
 

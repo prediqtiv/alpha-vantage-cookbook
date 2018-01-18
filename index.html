@@ -3,10 +3,10 @@
 <head>
 <meta charset = "utf-8" >
 <meta name = "viewport" content= "width=device-width, initial-scale=1">
-<meta name = "description" content = "This script allows you to list, open view all the files in all the Spider folders" >
-<meta name = "keywords" content = "JavaScript,Showdown,Markdown,GitHub,FOSS" >
-<meta name = "date" content = "2018-01-16" >
-<title>predIQtiv ~ Alpha Vantage</title>
+<meta name = "description" content = "Cookbook examples for the Alpha Vantage API - created in plain-vanilla JavaScript" >
+<meta name = "keywords" content = "Alpha VantageJavaScript,Showdown,Markdown,GitHub,FOSS" >
+<meta name = "date" content = "2018-01-17" >
+<title>Alpha Vantage Cookbook</title>
 
 <style>
 /* Copyright 2018 predIQtiv authors. MIT License */
@@ -44,7 +44,7 @@
 </style>
 </head>
 <body>
-<script src = "https://cdn.rawgit.com/showdownjs/showdown/1.8.5/dist/showdown.min.js" ></script>
+<script src = "https://cdn.rawgit.com/showdownjs/showdown/1.8.6/dist/showdown.min.js" ></script>
 
 
 	<div id = "divMenu" >
@@ -58,8 +58,8 @@
 		</p>
 
 		<h2>
-			<a id = "urlInfo" target="_top" ><img src="https://status.github.com/images/invertocat.png" height=18 title='Octocat'  ></a>
-			<a href="" >Alpha Vantage Cookbook</a>
+			<a id = "urlInfo" target="_top" ><img src="https://status.github.com/images/invertocat.png" height=18 title='Octocat' ></a>
+			<a href="" ><script> document.write( document.title )</script></a>
 		</h2>
 
 		<p><script> document.write(document.head.querySelector( '[name=description]' ).content ); </script></p>
@@ -101,7 +101,6 @@
 
 	</div>
 
-
 	<div id = "hamburger" onclick=toggleNav(); > slide &#9776;  </div>
 
 <script>
@@ -113,11 +112,11 @@
 	const uriDefaultFile = 'README.md';
 //	const uriDefaultFile = '../../plugins/view-github-issues.html'
 
-	const iconInfo = '<img src="https://status.github.com/images/invertocat.png" height=18 > </a>';
+	const iconInfo = '<img src="https://status.github.com/images/invertocat.png" height=18 >';
 
 	const urlGitHubApiContents = 'https://api.github.com/repos/' + user + repo + '/contents/' + pathRepo;
 
-	const urlGitHubPage = 'https://rawgit.com/' + user + repo + '/master/';
+	let urlGitHubPage;
 
 	const urlGitHubSource = 'https://github.com/' + user + repo;
 //	const urlGitHubSource = 'https://github.com/' + user + repo + '/blob/master/' + pathRepo;
@@ -126,6 +125,9 @@
 	init();
 
 	function init() {
+
+		urlGitHubPage = location.host.startsWith( user + '.github.io' ) ? '' : 'https://rawgit.com/' + user + repo + '/master/';
+//console.log( 'urlGitHubPage', urlGitHubPage );
 
 		urlInfo.href = urlGitHubSource;
 
@@ -145,28 +147,25 @@
 
 		if ( !location.hash ) {
 
-			url = uriDefaultFile;
+			url = urlGitHubPage + uriDefaultFile;
 			ulc = url.toLowerCase();
 
 		} else {
-
-//https://rawgit.com/ladybug-tools/spider/master
-//https://rawgit.com/pushme-pullyou/pushme-pullyou.github.io/master/
-//https://rawgit.com/predIQtiv/alpha-vantage-cookbook/master
 
 			url = location.hash.slice( 1 );
 			ulc = url.toLowerCase();
 
 //console.log( 'url', url );
 
-//			crumbs = url.lastIndexOf( '/' ) > 0 ? url.slice( 0, url.lastIndexOf( '/' ) ) : '';			start =  url.lastIndexOf( '/' );
-			crumbs = url.startsWith( 'https://' ) ? url.slice( 59 ) : url;
+			start = ( 'https://rawgit.com/' + user + repo +'/master/' ).length;
+
+			crumbs = location.host.startsWith( 'pushme-pullyou.github.io' ) ? url : url.slice( start );
 			crumbs2 = crumbs.lastIndexOf( '/' ) > 0 ? crumbs.slice( 0, crumbs.lastIndexOf( '/' ) ) : '';
 
 //console.log( 'crumbs2',  crumbs2 );
+
 			setBreadcrumbs( crumbs2 );
 
-//			requestFile( urlGitHubApiContents + url.slice( 0, url.lastIndexOf( '/' ) + 1 ), callbackGitHubMenu );
 			requestFile( urlGitHubApiContents + crumbs2, callbackGitHubMenu );
 
 		}
@@ -199,7 +198,6 @@
 	function getFolderContents( path = '' ) {
 
 		const url = urlGitHubApiContents + path;
-//		const url = path;
 
 		requestFile( url, callbackGitHubMenu );
 
@@ -237,6 +235,7 @@
 	}
 
 
+
 	function callbackGitHubMenu( xhr ) {
 
 		const response = xhr.target.response;
@@ -247,7 +246,7 @@
 
 	if ( items.message ) { alert( items.message ); return; }
 
-		const ignoreFolders = [ 'data' ]; //, 'plugins'
+		const ignoreFolders = [ 'archive', 'pages' ]; //, 'plugins'
 
 		for ( let item of items ) {
 
@@ -267,7 +266,7 @@
 
 		}
 
-		const ignoreFiles = [ '.gitattributes', '.gitignore', 'ladybug-tools-spider.html' ];
+		const ignoreFiles = [ '.gitattributes', '.gitignore' ];
 
 		for ( let item of items ) {
 
@@ -283,14 +282,9 @@
 						'<td><a href="' + urlGitHubSource + '/blob/master/' + itemPath + '" target=_top >' + iconInfo + '</a></td>' +
 						'<td>' +
 
-// choose to access remote or local files
-//							'<a href=#' + urlGitHubPage + pathRepo + itemPath +
-							'<a href=#' + itemPath +
-
+							'<a href=#' + urlGitHubPage + pathRepo + itemPath +
 							' title="' + item.size.toLocaleString() + ' bytes" > ' + item.name + '</a> ' +
-// choose to access remote or local files
-//							( item.path.endsWith( 'html' ) ? '<a href=' + urlGitHubPage + pathRepo + itemPath + ' >&#x2750;</a>' : '' ) +
-							( item.path.endsWith( 'html' ) ? '<a href=' + itemPath + ' >&#x2750;</a>' : '' ) +
+							( item.path.endsWith( 'html' ) ? '<a href=' + urlGitHubPage + pathRepo + itemPath + ' >&#x2750;</a>' : '' ) +
 
 						'</td>' +
 
@@ -299,8 +293,7 @@
 				if ( ( !location.hash || location.hash.toLowerCase().endsWith( 'readme.md' ) )
 						&& item.path !== 'README.md' && item.name.toLowerCase() === 'readme.md' ) {
 
-//					location.hash = urlGitHubPage + pathRepo + itemPath;
-					location.hash = itemPath;
+					location.hash = urlGitHubPage + pathRepo + itemPath;
 
 				}
 
