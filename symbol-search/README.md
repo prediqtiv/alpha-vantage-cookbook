@@ -10,7 +10,7 @@ https://www.alpha-vantage.community/post/symbol-search-api-9609292?pid=130294319
 
 There are multiple aspects to this topic
 
-* Enter symbol get company name and/or details
+* Enter symbol, get company name and/or details
 * Enter company name, get symbols
 * Determine symbol naming format that works with Alpha Vantage
 * Determine that data that Alpha Vantage is likely to return for a symbol
@@ -18,13 +18,17 @@ There are multiple aspects to this topic
 
 The following is a preliminary investigation into online symbol search API with data available - just like Alpha Vantage - at no charge
 
-## [OpenFIGI API Front End]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end.html )
+## Open full screen: [OpenFIGI API Front End]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end.html )
 
-Very preliminary release
+* Very preliminary release
+* Type in typical symbol name, see the OpenFIGI results
 
-## Open FIGI Links of Interest
+
+
+## OpenFIGI Links of Interest
 
 https://openfigi.com/api
+
 
 ### Stackoverflow help
 
@@ -33,7 +37,7 @@ https://stackoverflow.com/questions/45137592/openfigi-api-and-cors
 https://stackoverflow.com/questions/43142087/openfigi-api-curl-to-java-post
 
 
-## Bloomberg SymbolSearch 'Links of Interest
+## Bloomberg SymbolSearch Links of Interest
 
 https://www.bloomberg.com/markets/symbolsearch
 
