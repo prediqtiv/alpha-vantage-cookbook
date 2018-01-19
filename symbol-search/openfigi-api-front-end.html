@@ -20,9 +20,16 @@
 </head>
 <body>
 
-	<h1><a href = '' >OpenFIGI Basic</a></h1>
+	<h1>
+		<a id = "urlInfo" target="_top" ><img src="https://status.github.com/images/invertocat.png" height=18 title='Octocat' ></a>
 
-	<p><button onclick=thing(); >button</button></p>
+		<a href="" ><script> document.write( document.title ); </script></a>
+	</h1>
+
+	<p title='Ticker is a specific identifier for a financial instrument that reflects common usage.'>
+		Ticker symbol: <input id=inpSymbol >
+		<button onclick=getTickerSymbolData(); >get ticker symbol data</button>
+	</p>
 
 	<div id = "divContents" ></div>
 
@@ -30,27 +37,49 @@
 // https://stackoverflow.com/questions/45137592/openfigi-api-and-cors
 // https://stackoverflow.com/questions/43142087/openfigi-api-curl-to-java-post
 
-	requestFile();
 
+	function getTickerSymbolData() {
 
-	function requestFile() {
-
+		const symbol = inpSymbol.value.toUpperCase();
 		const xhr = new XMLHttpRequest();
 		const url = 'https://cors-anywhere.herokuapp.com/https://api.openfigi.com/v1/mapping';
 //		const params = '[{"idType":"ID_WERTPAPIER","idValue":"851399","exchCode":"US"}]';
 //		const params = '[{"idType":"ID_ISIN","idValue":"US4592001014"}]';
-		const params = '[{"idType":"TICKER","idValue":"RR"}]';
+		const params = '[{"idType":"TICKER","idValue":"' + symbol + '"}]';
 
 		xhr.open( 'POST', url, true );
 		xhr.setRequestHeader( "Content-type", "text/json" );
 
-		xhr.onload = function() {
-			divContents.innerText =  xhr.response;
-		}
+		xhr.onload = callbackSymbolData;
 		xhr.send( params );
 
 	}
 
+	function callbackSymbolData( xhr ) {
+
+		jsonArray = JSON.parse( xhr.target.response );
+
+console.log( 'jsonArray', jsonArray );
+
+		let txt = '';
+
+		for ( let symbol of jsonArray[ 0 ].data ) {
+
+//console.log( 'symbol', symbol );
+
+			for ( let item in symbol ) {
+
+				txt += item + ':' + symbol[ item ] + ' ';
+
+			}
+
+			txt += '<br><br>';
+
+		}
+
+		divContents.innerHTML = txt; //xhr.target.response;
+
+	}
 
 </script>
 </body>
