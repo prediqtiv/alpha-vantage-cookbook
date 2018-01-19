@@ -61,6 +61,8 @@ Gathering the data for all the exchanges would probably take less than a day. Wr
 ### BSE
 
 <http://www.bseindia.com/>
+https://en.wikipedia.org/wiki/Bombay_Stock_Exchange
+
 
 Working:
 
@@ -71,6 +73,9 @@ https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BSE:50768
 https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=BSE:500470&apikey=tbd1
 
 https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=BSE:507685&apikey=tbd1
+
+ https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=BSE:500477&apikey=KEY&outputsize=full
+
 
 ### sensex
 https://en.wikipedia.org/wiki/BSE_SENSEX
@@ -107,6 +112,7 @@ List of listed company names - bot does not include the symbols
 Use finance.yahoo.com and type in the name of the company in the search box. If it's traded on the JSE it will show the symbol followed by the suffix .JO. Use that suffix in your API call.  ABSP.JO is Absa Bank Limited, for example.
 
 https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=SOL.JO&apikey=tbd1
+https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=SOL.JO&apikey=KEY
 
 https://www.african-markets.com/en/stock-markets/jse/listed-companies
 
@@ -119,10 +125,21 @@ https://www.african-markets.com/en/stock-markets/jse/listed-companies
 * <http://www.nasdaqomxnordic.com/shares/listed-companies/copenhagen>
 
 ## NSE
+https://en.wikipedia.org/wiki/National_Stock_Exchange_of_India
+
 
 https://www.nseindia.com/content/indices/ind_nifty500list.csv
 
-## Shanghai Stock Exchang
+
+  https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NSE:ASHOKLEY&apikey=tbd1&outputsize=full
+
+https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NSE:HDFC&apikey=KEY&outputsize=full
+https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NSE:SBIN&apikey=KEY&outputsize=full
+https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NSE:LT&apikey=KEY&outputsize=full
+
+
+
+## Shanghai Stock Exchange
 
 https://en.wikipedia.org/wiki/Shanghai_Stock_Exchange
 http://english.sse.com.cn/

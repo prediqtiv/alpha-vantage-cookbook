@@ -53,6 +53,11 @@ Click any of the links in the left menu to view the file or run the demo.
 * <https://iextrading.com/>
 * <https://iextrading.com/developer/>
 
+## Barchart.com
+
+
+* <https://www.barchart.com/>
+Barchart.com is the leading provider of intraday stock and commodities real-time or delayed charts with powerful indicators and technical analysis.
 
 ## Comments of feedback?
 

@@ -50,6 +50,10 @@ https://www.bloomberg.com/markets/symbolsearch?query=BDP("ESS PW Equity","Name")
 
 ## Links of Interest
 
+https://permid.org/
+
+https://quant.stackexchange.com/questions/7568/mapping-symbols-between-tickers-reuters-rics-and-bloomberg-tickers
+
 https://stackoverflow.com/questions/885456/stock-ticker-symbol-lookup-api
 
 http://www.nasdaq.com/screening/company-list.aspx
