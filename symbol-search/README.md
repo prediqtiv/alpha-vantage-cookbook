@@ -18,8 +18,11 @@ There are multiple aspects to this topic
 
 The following is a preliminary investigation into online symbol search API with data available - just like Alpha Vantage - at no charge
 
+## [OpenFIGI API Front End]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end.html )
 
-## Open FIGI Read
+Very preliminary release
+
+## Open FIGI Links of Interest
 
 https://openfigi.com/api
 
@@ -30,7 +33,7 @@ https://stackoverflow.com/questions/45137592/openfigi-api-and-cors
 https://stackoverflow.com/questions/43142087/openfigi-api-curl-to-java-post
 
 
-## Bloomberg SymbolSearch
+## Bloomberg SymbolSearch 'Links of Interest
 
 https://www.bloomberg.com/markets/symbolsearch
 
