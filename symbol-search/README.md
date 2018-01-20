@@ -4,9 +4,9 @@
 
 # Symbol Search
 
-See this post:
+See this post in the Alpha Vanta Community Forum:
 
-https://www.alpha-vantage.community/post/symbol-search-api-9609292?pid=1302943198
+<https://www.alpha-vantage.community/post/symbol-search-api-9609292?pid=1302943198>
 
 
 There are multiple aspects to this topic
@@ -17,26 +17,35 @@ There are multiple aspects to this topic
 * Determine that data that Alpha Vantage is likely to return for a symbol
 * And so on
 
-The following is a preliminary investigation into online symbol search API with data available - just like Alpha Vantage - at no charge
+The following is a preliminary investigation into online symbol search API with data available - just like Alpha Vantage - at no charge. I have no clear idea where this is all headed., but we will get there one day. ;-)
 
 ## Open full screen: [OpenFIGI API Front End R2]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end-r2.html )
 
 * With slide in/out 'hamburger menu
-* Updates with changes to location hash
-* Loads the NSE NIFTY50 Symbol Set
+* Updates results with changes to location hash
+* Button loads the NSE NIFTY50 symbol set
 	* Button for each symbol checks to see is ticker symbol is recognized by OpenFIGI
 
-### Recognized by Open FIGI
+### NSE NIFTY50 Ticker Symbols Recognized by Open FIGI
 
-* [BPCL](  )
-* [CIPLA](  )
-* [SBIN](  )
+I have not checked all the 50 symbols. Most symbols produce no results in OpenFIGI.
+
+Here are some of the symbols - with links - that do have results:
+* [BPCL]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end-r2.html#%7B%22symbol%22:%22BPCL%22%7D )
+* [CIPLA]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end-r2.html#%7B%22symbol%22:%22CIPLA%22%7D )
+* [HDFC]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end-r2.html#%7B%22symbol%22:%22HDFC%22%7D )
+* [SBIN]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end-r2.html#%7B%22symbol%22:%22SBIN%22%7D )
 
 
 ## Open full screen: [OpenFIGI API Front End]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end.html )
 
 * Very preliminary release
 * Type in typical symbol name, see the OpenFIGI results
+
+## Coming Soon to 'OpenFIGI API Front End'
+
+* More filters
+* Links to symbols from more exchanges
 
 
 ***
