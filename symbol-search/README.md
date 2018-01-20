@@ -1,7 +1,7 @@
 
 
 
-# Symbol Search API
+# Symbol Search
 
 See this post:
 
@@ -24,17 +24,18 @@ The following is a preliminary investigation into online symbol search API with 
 * Type in typical symbol name, see the OpenFIGI results
 
 
+***
 
 ## OpenFIGI Links of Interest
 
-https://openfigi.com/api
+<https://openfigi.com/api>
 
 
 ### Stackoverflow help
 
-https://stackoverflow.com/questions/45137592/openfigi-api-and-cors
-	* https://jsfiddle.net/theo/qvq4xLgy/
-https://stackoverflow.com/questions/43142087/openfigi-api-curl-to-java-post
+* <https://stackoverflow.com/questions/45137592/openfigi-api-and-cors>
+	* <https://jsfiddle.net/theo/qvq4xLgy/>
+* <https://stackoverflow.com/questions/43142087/openfigi-api-curl-to-java-post
 
 
 ## Bloomberg SymbolSearch Links of Interest
@@ -48,12 +49,16 @@ https://www.bloomberg.com/markets/symbolsearch?query=BDP("ticker","field")
 https://www.bloomberg.com/markets/symbolsearch?query=BDP("ESS PW Equity","Name")
 
 
-## Links of Interest
+## More Links of Interest
 
-https://permid.org/
+<https://permid.org/>
 
-https://quant.stackexchange.com/questions/7568/mapping-symbols-between-tickers-reuters-rics-and-bloomberg-tickers
+<https://quant.stackexchange.com/questions/7568/mapping-symbols-between-tickers-reuters-rics-and-bloomberg-tickers>
 
-https://stackoverflow.com/questions/885456/stock-ticker-symbol-lookup-api
+<https://stackoverflow.com/questions/885456/stock-ticker-symbol-lookup-api>
 
-http://www.nasdaq.com/screening/company-list.aspx
+<http://www.nasdaq.com/screening/company-list.aspx>
+
+
+
+***

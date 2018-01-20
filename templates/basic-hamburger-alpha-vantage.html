@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" >
+<head>
+<meta charset="utf-8" >
+<meta name="viewport" content = "width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0" >
+<meta name=description content="Basic menu sliding" >
+<meta name=keywords content="predIQtiv,Alpha-Vantage,JavaScript,GitHub,FOSS" >
+<meta name = "date" content = "2018-01-19" >
+<title>basic hamburger</title>
+<style>
+/* Copyright 2018 predIQtiv authors. MIT License */
+
+/* https://www.w3schools.com/colors/colors_names.asp // use colors and borders to help identify the scope of particular elements */
+
+	html { --mnu-color: MediumSlateBlue; --mnu-back-color: cornsilk; --mnu-width:300px; height: 100%; }
+
+	body, html { font: 12pt monospace; height: 100%; margin: 0; }
+
+	a { color: var( --mnu-color ); text-decoration: none; }
+	a:hover, a:focus, #hamburger:hover { background-color: yellow; color: #888; }
+
+	blockquote, pre { background-color: #eee; padding: 10px; }
+	button, input[ type=button ] { background-color: #ddd; border: none; color: var( --mnu-color ); cursor: pointer; padding: 3px 20px; }
+	button:hover { background-color: #ccc; color: white }
+
+	iframe { width: 100%; }
+
+	input[ type = range ] { -webkit-appearance: none; -moz-appearance: none; background-color: #ddd; width: 100%; }
+	input[ type = range ]::-moz-range-thumb { background-color: #888; border-radius: 0; width: 10px; }
+	input[ type = range ]::-webkit-slider-thumb { -webkit-appearance: none; background-color: #888; height: 20px; width: 10px; }
+
+	#divContainer { height: 100%; margin: 0 0 0 var( --mnu-width ); transition: margin-left .5s; position: relative; }
+	#divContents { height: 100%; left: 0; margin: 0 auto; max-width: 800px; right: 0; }
+
+	#divMenu { background-color: var( --mnu-back-color ); box-sizing: border-box; margin: 0px;
+		overflow-x: hidden; padding: 50px 10px 30px 10px; position: fixed; top: 0; width: var( --mnu-width ); z-index: 1; transition: left 0.5s; }
+
+	#hamburger { background-color: pink; box-sizing: border-box; cursor: pointer; font-size: 30px; left: calc( var( --mnu-width ) - 100px );
+		line-height: 30px; margin: 0; padding: 5px 15px 8px 10px; position: fixed; top: 0; transition: left 0.5s; z-index: 10; }
+
+</style>
+</head>
+<body>
+
+	<div id = "divMenu" >
+
+		<div style=font-size:36px;line-height:24px; >
+			<a href="http://prediqtiv.com" target="_top" > <img src=https://prediqtiv.github.io/images/predIQtiv.png height=36 ></a> &raquo;
+			<a href="../index.html" style=font-size:36px;vertical-align:top;  "_top" >&#x2302; </a>&raquo;
+		</div>
+
+		<h1>
+			<a href="https://github.com/prediqtive/alpha-vantage-cookbook/tree/master/templates" target="_top" >
+				<img src="https://status.github.com/images/invertocat.png" height=18 ></a>
+			<a href="" ><script>
+			document.write( location.href.split( '/' ).pop().slice( 0, -5 ).replace( /-/g, ' ' ) );
+			//document.write( document.title );
+			</script></a>
+		</h1>
+
+		<p><script> document.write( document.head.querySelector( '[name=description]' ).content )</script></p>
+
+		<div id = "divMenuItems" ></div>
+
+		<hr>
+
+		<h1 onclick=divMenu.scrollTop=0; style=cursor:pointer;text-align:center; title='go to top' > <img src=https://prediqtiv.github.io/images/five-boxes.png height=24 > </h1>
+
+	</div>
+
+	<div id = "divContainer" >
+
+		<div id = "divContents" ></div>
+
+	</div>
+
+	<div id = "hamburger" onclick=toggleNav(); > slide &#9776; </div>
+
+<script>
+
+	let txt;
+	const b = '<br>';
+
+	init();
+
+
+	function init() {
+
+		txt = 'lorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?';
+
+		divContents.innerHTML += b + txt;
+
+	}
+
+
+
+	function toggleNav() {
+
+		const left = 'calc( var( --mnu-width ) - 100px )';
+
+		if ( hamburger.style.left === '' || hamburger.style.left === left ) {
+
+			divMenu.style.left = 'calc( -1 * var( --mnu-width ) - 20px )';
+			hamburger.style.left = '-100px';
+
+		} else {
+
+			divMenu.style.left = 0;
+			hamburger.style.left = left;
+
+		}
+
+	}
+
+</script>
+</body>
+</html>
