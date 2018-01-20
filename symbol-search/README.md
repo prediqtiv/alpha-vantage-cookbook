@@ -4,7 +4,7 @@
 
 # Symbol Search
 
-See this post in the Alpha Vanta Community Forum:
+See this post in the Alpha Vantagw Community Forum:
 
 <https://www.alpha-vantage.community/post/symbol-search-api-9609292?pid=1302943198>
 
