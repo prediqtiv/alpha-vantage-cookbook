@@ -1,3 +1,4 @@
+<span style=display:none; >[You are now in a GitHub source code view - click this link to view Read Me file as a web page]( https://prediqtiv.github.io/alpha-vantage-cookbook/#ymbol-search/README.md "View file as a web page." ) </span>
 
 
 
@@ -17,6 +18,20 @@ There are multiple aspects to this topic
 * And so on
 
 The following is a preliminary investigation into online symbol search API with data available - just like Alpha Vantage - at no charge
+
+## Open full screen: [OpenFIGI API Front End R2]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end-r2.html )
+
+* With slide in/out 'hamburger menu
+* Updates with changes to location hash
+* Loads the NSE NIFTY50 Symbol Set
+	* Button for each symbol checks to see is ticker symbol is recognized by OpenFIGI
+
+### Recognized by Open FIGI
+
+* [BPCL](  )
+* [CIPLA](  )
+* [SBIN](  )
+
 
 ## Open full screen: [OpenFIGI API Front End]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end.html )
 
@@ -40,7 +55,7 @@ The following is a preliminary investigation into online symbol search API with 
 
 ## Bloomberg SymbolSearch Links of Interest
 
-https://www.bloomberg.com/markets/symbolsearch
+<https://www.bloomberg.com/markets/symbolsearch>
 
 https://www.bloomberg.com/markets/symbolsearch?query=rr&commit=Find+Symbols
 

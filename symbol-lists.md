@@ -124,18 +124,23 @@ https://www.african-markets.com/en/stock-markets/jse/listed-companies
 
 * <http://www.nasdaqomxnordic.com/shares/listed-companies/copenhagen>
 
+
 ## NSE
-https://en.wikipedia.org/wiki/National_Stock_Exchange_of_India
+* <https://en.wikipedia.org/wiki/National_Stock_Exchange_of_India>
+* <https://www.nseindia.com/>
 
+### NIFTY 50 and Nifty 500
 
-https://www.nseindia.com/content/indices/ind_nifty500list.csv
+* <https://en.wikipedia.org/wiki/NIFTY_50>
+* <https://www.nseindia.com/live_market/dynaContent/live_watch/equities_stock_watch.htm?cat=N>
+* <https://www.nseindia.com/content/indices/ind_nifty50list.csv>
+* <https://www.nseindia.com/content/indices/ind_nifty500list.csv>
 
-
-  https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NSE:ASHOKLEY&apikey=tbd1&outputsize=full
-
-https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NSE:HDFC&apikey=KEY&outputsize=full
-https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NSE:SBIN&apikey=KEY&outputsize=full
-https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NSE:LT&apikey=KEY&outputsize=full
+### Various NSE Symbols
+* <https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NSE:ASHOKLEY&apikey=tbd1&outputsize=full>
+* <https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NSE:HDFC&apikey=KEY&outputsize=full>
+* <https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NSE:SBIN&apikey=KEY&outputsize=full>
+* <https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NSE:LT&apikey=KEY&outputsize=full>
 
 
 
