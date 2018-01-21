@@ -64,6 +64,8 @@
 
 		<p><button onclick=getNseNift50(); >get NSE NIFTY 50</button></p>
 
+		<p><button onclick=getNseNift500(); >get NSE NIFTY 500</button></p>
+
 		<p title='Ticker is a specific identifier for a financial instrument that reflects common usage.'>
 			Ticker symbol: <br><input id=inpSymbol style=width:70px >
 			<button onclick=getTickerSymbolData(); >get ticker symbol data</button>
@@ -144,7 +146,21 @@
 
 		requestFile( urlCORS + url, callbackNse );
 
-}
+	}
+
+
+
+	function getNseNift500() {
+
+		let urlCORS, url;
+
+		urlCORS = 'https://cors-anywhere.herokuapp.com/';
+
+		url = 'https://www.nseindia.com/content/indices/ind_nifty500list.csv';
+
+		requestFile( urlCORS + url, callbackNse );
+
+	}
 
 
 

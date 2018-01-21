@@ -34,6 +34,8 @@ Here are some of the symbols - with links - that do have results:
 * [BPCL]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end-r2.html#%7B%22symbol%22:%22BPCL%22%7D )
 * [CIPLA]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end-r2.html#%7B%22symbol%22:%22CIPLA%22%7D )
 * [HDFC]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end-r2.html#%7B%22symbol%22:%22HDFC%22%7D )
+* [ITC]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end-r2.html#%7B%22symbol%22:%22ITC%22%7D )
+* [LT]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end-r2.html#%7B%22symbol%22:%22LT%22%7D )
 * [SBIN]( https://prediqtiv.github.io/alpha-vantage-cookbook/symbol-search/openfigi-api-front-end-r2.html#%7B%22symbol%22:%22SBIN%22%7D )
 
 
@@ -83,6 +85,16 @@ https://www.bloomberg.com/markets/symbolsearch?query=BDP("ESS PW Equity","Name")
 
 <http://www.nasdaq.com/screening/company-list.aspx>
 
+
+## Wikipedia
+
+https://wikimediafoundation.org/wiki/Developer_app_guidelines
+
+https://en.wikipedia.org/wiki/Wikipedia:Database_download
+https://dumps.wikimedia.org/
+https://en.wikipedia.org/wiki/Special:Export
+
+https://en.wikipedia.org/wiki/Special:Export/List_of_S%26P_500_companies
 
 
 ***
