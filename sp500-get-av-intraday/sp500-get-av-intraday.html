@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang = "en" >
+<head>
+<meta charset = "utf-8" >
+<meta name = "viewport" content= "width=device-width, initial-scale=1">
+<meta name = "description" content = "Obtain the latest list of S&P 500 constituents from Wikipedia and get latest prices from Alpha Vantage" >
+<meta name = "keywords" content = "JavaScript,GitHub,FOSS" >
+<meta name = "date" content = "2018-01-28" >
+<title>S&P 500 Constituents with prices from Alpha Vantage R1.0 </title>
+<style>
+
+	body { font: 12pt monospace; margin: 0 auto; max-width: 800px; }
+	a { color: crimson; text-decoration: none; }
+	a:hover, a:focus { background-color: yellow; color: #aaa; text-decoration: underline }
+
+</style>
+</head>
+<body>
+
+	<div id = "divHeader" >
+
+		<h1 id = "divTitle" >
+			<a href="" ><script> document.write( document.title ); </script></a>
+		</h1>
+
+		<p><script> document.write( document.head.querySelector( '[name=description]' ).content )</script></p>
+
+		<p>
+			API key: <input id=inpApiKey onchange=setStorage(); value='demo' >
+			<button onclick=getPrices(); >get prices</button>
+		</p>
+
+		<div id = "divContents" ></div>
+
+	</div>
+
+<script>
+
+	let symbols;
+	let prices;
+	let count = 1;
+	let timeStart;
+	let apiKey;
+
+	init();
+
+	function init() {
+
+		apiKey = localStorage.getItem( 'apiKey' );
+
+		inpApiKey.value = apiKey ? apiKey : '' ;
+
+	}
+
+
+	function getPrices() {
+
+		const urlCORS = 'https://cors-anywhere.herokuapp.com/';
+		const url = 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies';
+
+		requestFile( urlCORS + url, callbackWiki );
+
+	}
+
+	function callbackWiki( xhr ) {
+
+		const response = xhr.target.response;
+		//console.log( 'response', response );
+
+		const parser = new DOMParser();
+		const text = parser.parseFromString( response, "text/html" );
+		const table = text.getElementsByTagName( 'table' )[ 0 ];
+		const rows = table.getElementsByTagName( 'tr' );
+		symbols = [];
+
+		for ( let row of rows ) {
+
+			symbols.push( row.firstElementChild.innerText );
+
+		}
+
+		divContents.innerHTML = '<p>'+ ( symbols.length - 1 ) + ' symbols in today\'s SP500</p>';
+
+		get100AVIntraday( );
+
+	}
+
+
+
+	function get100AVIntraday( count = 1 ) {
+
+		subset = symbols.slice( count, count + 100 ).join( ', ' );
+
+		const url = 'https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&symbols=' + subset + '&apikey=' + apiKey;
+
+		timeStart = Date.now();
+
+		requestFile( url, callbackAV );
+
+	}
+
+
+	function callbackAV( xhr ) {
+
+
+
+		const response = xhr.target.response;
+//console.log( 'response', response );
+
+		const json = JSON.parse( response );
+console.log( 'json', json );
+
+		let txt = '';
+
+		for ( let quote of json["Stock Quotes"] ) {
+
+			txt += '<tr><td>' + count++ + '</td><td>' + quote['1. symbol'] + '</td><td>' + quote['2. price'] + '</td></tr>';
+
+		}
+
+		divContents.innerHTML += '<table>' + txt + '</table>';
+
+		timeDelta = Date.now() - timeStart;
+//console.log( 'td', timeDelta );
+
+		if ( count < symbols.length ) {
+
+			setTimeout( function() { get100AVIntraday( count ); }, 1100 - timeDelta );
+
+		}
+
+	}
+
+
+
+	function requestFile( url, callback ) {
+
+		const xhr = new XMLHttpRequest();
+		xhr.crossOrigin = 'anonymous';
+		xhr.open( 'GET', url, true );
+		xhr.onerror = function( xhr ) { console.log( 'error:', xhr  ); };
+		//		xhr.onprogress = function( xhr ) { console.log( 'bytes loaded:', xhr.loaded  ); }; /// or something
+		xhr.onload = callback;
+		xhr.send( null );
+
+	}
+
+
+
+	function setStorage() {
+
+		apiKey = inpApiKey.value;
+		localStorage.setItem('apiKey', apiKey );
+
+	}
+
+
+
+	function getStorage() {
+
+		apiKey = localStorage.getItem( 'apiKey' );
+
+	}
+
+</script>
+</body>
+</html>

@@ -53,7 +53,7 @@ Click any of the links in the left menu to view the file or run the demo.
 * <https://iextrading.com/>
 * <https://iextrading.com/developer/>
 
-## Barchart.com
+### Barchart.com
 
 
 * <https://www.barchart.com/>

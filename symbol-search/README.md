@@ -88,13 +88,15 @@ https://www.bloomberg.com/markets/symbolsearch?query=BDP("ESS PW Equity","Name")
 
 ## Wikipedia
 
-https://wikimediafoundation.org/wiki/Developer_app_guidelines
+* https://wikimediafoundation.org/wiki/Developer_app_guidelines
+* https://en.wikipedia.org/wiki/Wikipedia:Database_download
+* https://dumps.wikimedia.org/
+* https://en.wikipedia.org/wiki/Special:Export
 
-https://en.wikipedia.org/wiki/Wikipedia:Database_download
-https://dumps.wikimedia.org/
-https://en.wikipedia.org/wiki/Special:Export
+### SP500
 
-https://en.wikipedia.org/wiki/Special:Export/List_of_S%26P_500_companies
+* https://en.wikipedia.org/wiki/List_of_S%26P_500_companies
+* https://en.wikipedia.org/wiki/Special:Export/List_of_S%26P_500_companies
 
 
 ***

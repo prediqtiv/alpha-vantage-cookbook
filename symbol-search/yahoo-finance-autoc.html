@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en" >
+<head>
+<meta charset="utf-8" >
+<meta name="viewport" content = "width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0" >
+<meta name=description content="Get symbol data from Bloomberg's www.OpenFIGI.com" >
+<meta name=keywords content="predIQtiv,Alpha-Vantage,JavaScript,GitHub,FOSS" >
+<meta name = "date" content = "2018-01-19" >
+<title>yahoo finance autoc r1.0</title>
+<style>
+/* Copyright 2018 predIQtiv authors. MIT License */
+
+/* https://www.w3schools.com/colors/colors_names.asp // use colors and borders to help identify the scope of particular elements */
+
+	html { --mnu-color: MediumSlateBlue; --mnu-back-color: cornsilk; --mnu-width:350px; height: 100%; }
+
+	body, html { font: 12pt monospace; height: 100%; margin: 0; }
+
+	a { color: var( --mnu-color ); text-decoration: none; }
+	a:hover, a:focus, #hamburger:hover { background-color: yellow; color: #888; }
+
+	blockquote, pre { background-color: #eee; padding: 10px; }
+	button, input[ type=button ] { background-color: #ddd; border: none; color: var( --mnu-color ); cursor: pointer; padding: 3px 20px; }
+	button:hover { background-color: #ccc; color: white }
+
+	iframe { width: 100%; }
+
+	input[ type = range ] { -webkit-appearance: none; -moz-appearance: none; background-color: #ddd; width: 100%; }
+	input[ type = range ]::-moz-range-thumb { background-color: #888; border-radius: 0; width: 10px; }
+	input[ type = range ]::-webkit-slider-thumb { -webkit-appearance: none; background-color: #888; height: 20px; width: 10px; }
+
+	#divContainer { height: 100%; margin: 0 0 0 var( --mnu-width ); transition: margin-left .5s; position: relative; }
+	#divContents { height: 100%; left: 0; margin: 0 auto; max-width: 800px; right: 0; }
+
+	#divMenu { background-color: var( --mnu-back-color ); box-sizing: border-box; height: 100%; margin: 0px;
+		overflow: auto; padding: 50px 10px 30px 10px; position: fixed; top: 0; width: var( --mnu-width ); z-index: 1; transition: left 0.5s; }
+
+	#hamburger { background-color: pink; box-sizing: border-box; cursor: pointer; font-size: 30px; left: calc( var( --mnu-width ) - 100px );
+		line-height: 30px; margin: 0; padding: 5px 15px 8px 10px; position: fixed; top: 0; transition: left 0.5s; z-index: 10; }
+
+</style>
+</head>
+<body>
+
+	<div id = "divMenu" >
+
+		<div style=font-size:36px;line-height:24px; >
+			<a href="http://prediqtiv.com" target="_top" > <img src=https://prediqtiv.github.io/images/predIQtiv.png height=36 ></a> &raquo;
+			<a href="../index.html" style=font-size:36px;vertical-align:top;  "_top" >&#x2302; </a>&raquo;
+		</div>
+
+		<h1>
+			<a href="https://github.com/prediqtiv/alpha-vantage-cookbook/tree/master/symbol-search/" target="_top" >
+				<img src="https://status.github.com/images/invertocat.png" height=18 ></a>
+			<a href="" ><script>
+			//document.write( location.href.split( '/' ).pop().slice( 0, -5 ).replace( /-/g, ' ' ) );
+			document.write( document.title );
+			</script></a>
+		</h1>
+
+		<div><script> document.write( document.head.querySelector( '[name=description]' ).content )</script></div>
+
+		<p><button onclick=setHash('abc'); >setHash to 'abc' </button></p>
+
+<!--
+		<p><button onclick=getNseNift50(); >get NSE NIFTY 50</button></p>
+
+		<p><button onclick=getNseNift500(); >get NSE NIFTY 500</button></p>
+-->
+		<p title='Ticker is a specific identifier for a financial instrument that reflects common usage.'>
+			Ticker symbol: <br><input id=inpSymbol style=width:70px >
+			<button onclick=getTickerSymbolData(); >get ticker symbol data</button>
+		</p>
+
+		<div id = "divMenuItems" ></div>
+
+		<hr>
+
+		<h1 onclick=divMenu.scrollTop=0; style=cursor:pointer;text-align:center; title='go to top' > <img src=https://prediqtiv.github.io/images/five-boxes.png height=24 > </h1>
+
+	</div>
+
+	<div id = "divContainer" >
+
+		<div id = "divContents" ></div>
+
+	</div>
+
+	<div id = "hamburger" onclick=toggleNav(); > slide &#9776; </div>
+
+<script>
+
+	let parameters = {};
+	let txt;
+	const b = '<br>';
+
+	init();
+
+
+	function init() {
+
+		txt = 'Enter a ticker symbol in the menu. Results will appear here.';
+
+		divContents.innerHTML += b + txt;
+
+		window.addEventListener ( 'hashchange', onHashChange, false );
+
+		onHashChange();
+
+	}
+
+
+
+	function onHashChange() {
+
+		if ( !location.hash) { return; }
+
+		const hash = decodeURI( location.hash.slice( 1 ) );
+
+console.log( 'hash', hash );
+
+		const params = JSON.parse( hash );
+
+		parameters.symbol = params.symbol ? params.symbol : 'abc';
+
+console.log( 'parameters', parameters );
+
+		divContents.innerHTML = JSON.stringify( parameters );
+
+		inpSymbol.value = parameters.symbol;
+
+		getTickerSymbolData();
+
+	}
+
+
+
+	function getNseNift50() {
+
+		let urlCORS, url;
+
+		urlCORS = 'https://cors-anywhere.herokuapp.com/';
+
+		url = 'https://www.nseindia.com/content/indices/ind_nifty50list.csv';
+
+		requestFile( urlCORS + url, callbackNse );
+
+	}
+
+
+
+	function getNseNift500() {
+
+		let urlCORS, url;
+
+		urlCORS = 'https://cors-anywhere.herokuapp.com/';
+
+		url = 'https://www.nseindia.com/content/indices/ind_nifty500list.csv';
+
+		requestFile( urlCORS + url, callbackNse );
+
+	}
+
+
+
+	function setHash( symbol ) {
+
+		const params = { symbol: symbol };
+		location.hash = encodeURI( JSON.stringify( params ) )
+
+	}
+
+
+
+	function getTickerSymbolData() {
+
+// https://stackoverflow.com/questions/45137592/openfigi-api-and-cors
+// https://stackoverflow.com/questions/43142087/openfigi-api-curl-to-java-post
+
+		const symbol = inpSymbol.value.toUpperCase();
+		const xhr = new XMLHttpRequest();
+		const url = 'https://cors-anywhere.herokuapp.com/http://autoc.finance.yahoo.com/autoc?query=';
+
+		//		const params = '[{"idType":"ID_WERTPAPIER","idValue":"851399","exchCode":"US"}]';
+		//		const params = '[{"idType":"ID_ISIN","idValue":"US4592001014"}]';
+		const params = '[{"idType":"TICKER","idValue":"' + symbol + '"}]';
+
+		url2 = url + symbol + '&lang=FR&region=FR';
+console.log( '', url2 );
+		xhr.open( 'GET', url2, true );
+		xhr.onload = callbackSymbolData;
+		xhr.send( params );
+
+	}
+
+
+
+	function callbackSymbolData( xhr ) {
+// catch too many requests
+		jsonArray = JSON.parse( xhr.target.response );
+
+console.log( 'jsonArray', jsonArray );
+
+		let txt = 'no identifier found';
+
+		if ( jsonArray.ResultSet !== undefined ) {
+
+			const symbols = jsonArray.ResultSet.Result;
+
+			txt = '<h3>' + symbols.length + ' results for ' + parameters.symbol + '</h3>';
+
+			for ( let symbol of symbols ) {
+
+	//console.log( 'symbol', symbol );
+
+				for ( let item in symbol ) {
+
+					txt += item + ': ' + symbol[ item ] + ' ';
+
+				}
+
+				txt += '<br><br>';
+
+			}
+
+		}
+
+		divContents.innerHTML = txt; //xhr.target.response;
+
+	}
+
+
+	function toggleNav() {
+
+		const left = 'calc( var( --mnu-width ) - 100px )';
+
+		if ( hamburger.style.left === '' || hamburger.style.left === left ) {
+
+			divMenu.style.left = 'calc( -1 * var( --mnu-width ) - 20px )';
+			hamburger.style.left = '-100px';
+
+		} else {
+
+			divMenu.style.left = 0;
+			hamburger.style.left = left;
+
+		}
+
+	}
+
+
+
+
+function requestFile( url, callback ) {
+
+	const xhr = new XMLHttpRequest();
+	xhr.crossOrigin = 'anonymous';
+	xhr.open( 'GET', url, true );
+	xhr.onerror = function( xhr ) { console.log( 'error:', xhr  ); };
+	xhr.onprogress = function( xhr ) { console.log( 'bytes loaded:', xhr.loaded  ); }; /// or something
+	xhr.onload = callback;
+	xhr.send( null );
+
+	}
+
+	function callbackNse( xhr ) {
+
+
+		const response = xhr.target.response;
+//console.log( 'response', response );
+
+//		divMenuItems.innerText = response;
+
+		const lines = response.split( '\n' ).map( function( line ) { return line.split( ',' ); } );
+
+console.log( 'line 8',lines[ 8 ] );
+//console.log( 'length', lines.length );
+
+//			lastMod = xhr.target.getResponseHeader ( "Last-Modified" );
+console.log( xhr.target.getResponseHeader ( "Last-Modified" ) );
+
+		txt = 'Last modified: ' + xhr.target.getResponseHeader ( "Last-Modified" )  + b + b;
+		for ( var i = 0; i < lines.length - 1; i++ ) {
+
+			line = lines[ i ];
+			txt += i + '. ' +
+			'<button onclick=setHash("' + line[ 2 ] + '") >' + line[ 2 ] + '</button> ' + line[ 0 ] + b;
+
+		}
+
+		divMenuItems.innerHTML = txt;
+	}
+
+</script>
+</body>
+</html>

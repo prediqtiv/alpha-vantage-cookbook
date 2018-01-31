@@ -49,7 +49,7 @@ The data for the constituents of each exchange is available with the help of the
 
 Below are links to web pages that allow you to download list of constituents. These links were gathered in a matter of minutes,
 
-Gathering the data for all the exchanges would probably take less than a day. Writing a utility that downloaded each list and nade the data available via GitHu pages or any static server might take a day or two.
+Gathering the data for all the exchanges would probably take less than a day. Writing a utility that downloaded each list and made the data available via GitHu pages or any static server might take a day or two.
 
 
 
@@ -159,3 +159,12 @@ http://www.szse.cn/main/en/marketdata/stockinformation/
 
 * <http://www.hedgechatter.com/96-stocks-apis-bloomberg-nasdaq-and-etrade/>
 * <http://www.eoddata.com/>
+* url for symbols: <https://stackoverflow.com/questions/32899143/yahoo-finance-api-stock-ticker-lookup-only-allowing-exact-match>
+	* https://www.alpha-vantage.community/post/new-app-sharelane-9628286?pid=1302972833
+* <https://www.reuters.com/finance/stocks/lookup?searchType=any&comSortBy=marketcap&sortBy=&dateRange=&search=goog>
+* NYSE is at http://www.nyse.com/interface/html/SymbolLookup.html
+* NASDAQ is at http://www.nasdaq.com/asp/NasdaqSymLookup2.asp?mode=stock
+* London Stock Exchange is at http://www.londonstockexchange.com/en-gb/pricesnews/prices/Trigger/genericsearch.htm
+* ASX is at http://www.asx.com.au/asx/research/codeLookup.do
+* https://openexchangerates.org/
+* https://stackoverflow.com/questions/5246843/how-to-get-a-complete-list-of-ticker-symbols-from-yahoo-finance?rq=1
