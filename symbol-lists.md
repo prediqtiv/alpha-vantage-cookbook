@@ -168,3 +168,6 @@ http://www.szse.cn/main/en/marketdata/stockinformation/
 * ASX is at http://www.asx.com.au/asx/research/codeLookup.do
 * https://openexchangerates.org/
 * https://stackoverflow.com/questions/5246843/how-to-get-a-complete-list-of-ticker-symbols-from-yahoo-finance?rq=1
+* <ftp://ftp.nasdaqtrader.com/symboldirectory>
+* <ftp.nasdaqtrader.com/SymbolDirectory/nasdaqlisted.txt>
+* <ftp.nasdaqtrader.com/SymbolDirectory/otherlisted.txt>

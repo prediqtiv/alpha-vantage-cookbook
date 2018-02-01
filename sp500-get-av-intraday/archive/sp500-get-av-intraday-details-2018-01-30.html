@@ -36,17 +36,13 @@
 	</div>
 
 <script>
-//	'use strict';
+	'use strict';
 
-	var symbolIndex;
-	var symbols;
-	var symbolsNew
-	var symbol;
+	let symbols;
 	let prices;
 	let count = 1;
 	let timeStart;
 	let apiKey;
-	var row;
 
 	init();
 
@@ -55,8 +51,6 @@
 		apiKey = localStorage.getItem( 'apiKey' );
 
 		inpApiKey.value = apiKey ? apiKey : '' ;
-
-		symbols = [];
 
 	}
 
@@ -68,12 +62,8 @@
 		const urlCORS = 'https://cors-anywhere.herokuapp.com/';
 		const url = 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies';
 
-		if ( !symbols.length ) {
 		requestFile( urlCORS + url, callbackWiki );
-		} else {
 
-			getAVIntraday( count );
-		}
 	}
 
 	function callbackWiki( xhr ) {
@@ -84,33 +74,30 @@
 		const parser = new DOMParser();
 		const text = parser.parseFromString( response, "text/html" );
 		const table = text.getElementsByTagName( 'table' )[ 0 ];
-//console.log( 'table', table );
 		const rows = table.getElementsByTagName( 'tr' );
+		symbols = [];
 
 		for ( let row of rows ) {
-//console.log( 'row', row );
 
-			const symbol = row.firstElementChild.innerText;
-			const name = row.children[ 1 ].textContent;
-			symbols.push( { symbol: symbol, name: name } );
+			symbols.push( row.firstElementChild.innerText );
 
 		}
 
 		divLogWiki.innerHTML = '<p>'+ ( symbols.length - 1 ) + ' symbols in today\'s SP500</p>';
 
-		getAVIntraday( 1 );
+		getAVIntraday( count );
 
 	}
 
 
 
-	function getAVIntraday( count ) {
+	function getAVIntraday( index = 1 ) {
 
 		if ( butPrices.style.backgroundColor !== 'pink' ) { return; }
 
-		const symbol = symbols[ count ];
+		const symbol = symbols[ index ]
 
-		const url = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=' + symbol.symbol + '&interval=5min&apikey=' + apiKey;
+		const url = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=' + symbol + '&interval=5min&apikey=' + apiKey;
 
 		timeStart = Date.now();
 
@@ -131,25 +118,7 @@ console.log( 'json', json );
 
 		if ( json["Meta Data"] ) {
 
-			const sym =  json["Meta Data"]['2. Symbol'];
-console.log( 'sym', sym );
-
-			const symbol = symbols[ count ];
-			const data = json[ 'Time Series (5min)'];
-			symbol.data = data;
-			var keys = Object.keys( data );
-console.log( symbol, count, 'data', symbol.data );
-//symbols[ sym ] = symbol;
-
-//			symbolsNew.push( sym );
-//console.log( 'symbolsNew', symbolsNew );
-			txt =
-				'<tr>' +
-				'<td>' + count++ + '</td><td>' + json["Meta Data"]['2. Symbol'] + '</td>' +
-				'<td>' + symbol.name + '</td>' +
-				'<td>' + json["Meta Data"]['3. Last Refreshed'] + '</td>' +
-				'<td>' + JSON.stringify( symbol.data[ keys[ 0 ] ] ) + '</td>' +
-			'</tr>';
+			txt = '<tr><td>' + count++ + '</td><td>' + json["Meta Data"]['2. Symbol'] + '</td><td>' + json["Meta Data"]['3. Last Refreshed'] + '</td></tr>';
 
 			if ( count < symbols.length ) {
 
