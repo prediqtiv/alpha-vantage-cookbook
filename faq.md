@@ -47,3 +47,6 @@ As of April 2008, there were 56 ETNs from nine issuers tracking different indexe
 If you want to get data of Stocks from other exchanges other then US-Stock exchanges then you need to do something like this, If I wanted to get the stock value for TITAN from Indian Exchange NSE, then I need to use this in symbol NSE:TITAN .
 
 <https://github.com/RomelTorres/alpha_vantage/issues/13#issuecomment-344839209>
+
+
+https://www.alphavantage.co/query?function=SMA&symbol=MSFT&interval=15min&time_period=10&series_type=close&apikey=demo

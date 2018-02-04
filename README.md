@@ -44,20 +44,18 @@ Click any of the links in the left menu to view the file or run the demo.
 * <https://www.alphavantage.co/documentation/>
 * <https://www.alpha-vantage.community/>
 
-### Users
+### Alpha Vantage Users
 
+* <https://www.chartpatternsearch.com/>
 * <https://www.deriscope.com/>
+* <https://timonnen.com>
+* <https://www.aw-marin.com/>
+* <http://vistatrades.com/>
 
-### IEX Trading
+Apps
 
-* <https://iextrading.com/>
-* <https://iextrading.com/developer/>
+* <https://play.google.com/store/apps/details?id=com.studio.sanjeev.scrips>
 
-### Barchart.com
-
-
-* <https://www.barchart.com/>
-Barchart.com is the leading provider of intraday stock and commodities real-time or delayed charts with powerful indicators and technical analysis.
 
 ## Comments of feedback?
 

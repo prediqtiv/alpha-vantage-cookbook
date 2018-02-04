@@ -13,6 +13,8 @@
 	a { color: crimson; text-decoration: none; }
 	a:hover, a:focus { background-color: yellow; color: #aaa; text-decoration: underline }
 
+	td { vertical-align: top; }
+
 </style>
 </head>
 <body>
@@ -27,26 +29,24 @@
 
 		<p>
 			API key: <input id=inpApiKey onchange=setStorage(); value='demo' >
-			<button id=butPrices onclick=toggleGettingPrices(count); >get prices</button>
+			<button id=butPrices onclick=toggleGettingPrices(count); >get prices</button> &nbsp;
+			<button onclick=saveDataToFile(); >Save data to file</button>
 		</p>
 
 		<div id = "divLogWiki" ></div>
 		<div id = "divContents" ></div>
+		<table id = "tblContents" ></table>
 
 	</div>
 
 <script>
 //	'use strict';
 
-	var symbolIndex;
 	var symbols;
-	var symbolsNew
-	var symbol;
-	let prices;
+
 	let count = 1;
 	let timeStart;
 	let apiKey;
-	var row;
 
 	init();
 
@@ -139,10 +139,7 @@ console.log( 'sym', sym );
 			symbol.data = data;
 			var keys = Object.keys( data );
 console.log( symbol, count, 'data', symbol.data );
-//symbols[ sym ] = symbol;
 
-//			symbolsNew.push( sym );
-//console.log( 'symbolsNew', symbolsNew );
 			txt =
 				'<tr>' +
 				'<td>' + count++ + '</td><td>' + json["Meta Data"]['2. Symbol'] + '</td>' +
@@ -175,7 +172,7 @@ console.log( 'error', count );
 
 		}
 
-		divContents.innerHTML += '<table>' + txt + '</table>';
+		tblContents.innerHTML += txt;
 
 		const timeDelta = Date.now() - timeStart;
 console.log( count, timeDelta );
@@ -210,6 +207,19 @@ console.log( count, timeDelta );
 	function getStorage() {
 
 		apiKey = localStorage.getItem( 'apiKey' );
+
+	}
+
+
+
+	function saveDataToFile() {
+
+		const blob = new Blob( [ divContents.innerText ] );
+		let a = document.body.appendChild( document.createElement( 'a' ) );
+		a.href = window.URL.createObjectURL( blob );
+		a.download = 'sp500symbols.txt';
+		a.click();
+		a = null;
 
 	}
 
